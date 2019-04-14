@@ -40,17 +40,33 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if(projects.count >= 2){
+            return 2
+        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recentCell", for: indexPath)
         
-        if let cell = cell as? HomeTableViewCell{
-            cell.projectLabel.text = projects[indexPath.row]
-            cell.descriptionLabel.text = descriptions[indexPath.row]
-            cell.dateLabel.text = dateStart[indexPath.row]
-            cell.dayLabel.text = dayStart[indexPath.row]
+        if(projects.count == 0){
+            if let cell = cell as? HomeTableViewCell{
+                cell.projectLabel.text = "No project created yet!"
+                cell.descriptionLabel.text = "Add one in the Projects tab"
+                cell.dateLabel.text = ""
+                cell.dayLabel.text = ""
+            }
+            return cell
+        }
+        
+        if(projects.count >= 1){
+            if let cell = cell as? HomeTableViewCell{
+                cell.projectLabel.text = projects[indexPath.row]
+                cell.descriptionLabel.text = descriptions[indexPath.row]
+                cell.dateLabel.text = dateStart[indexPath.row]
+                cell.dayLabel.text = dayStart[indexPath.row]
+            }
+            return cell
         }
         
         return cell
