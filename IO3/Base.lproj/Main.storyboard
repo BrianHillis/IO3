@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="-972" y="578.86056971514245"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Schedule View Controller-->
         <scene sceneID="Rwx-qE-fca">
             <objects>
-                <viewController id="6qf-pT-X3r" sceneMemberID="viewController">
+                <viewController id="6qf-pT-X3r" customClass="AddScheduleViewController" customModule="IO3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oWQ-eN-LfF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,6 +201,12 @@
                                 <date key="date" timeIntervalSinceReferenceDate="576127162.35622299">
                                     <!--2019-04-05 03:19:22 +0000-->
                                 </date>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="highlightToday" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -232,6 +238,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="R8G-Yt-6lH"/>
                     </view>
+                    <connections>
+                        <outlet property="datePicker" destination="1s3-iD-Y1f" id="kag-pO-oMR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fd7-hS-Ib9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dgi-ud-9nH" userLabel="Exit" sceneMemberID="exit"/>
