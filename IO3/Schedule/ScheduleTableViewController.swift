@@ -22,8 +22,7 @@ class ScheduleTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        UIDatePicker.setValue(UIColor.orange, forKeyPath: "textColor")
+
     }
 
     // MARK: - Table view data source
