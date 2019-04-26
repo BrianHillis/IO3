@@ -11,7 +11,8 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    
+	@IBOutlet weak var audioButton: UIButton!
+	
     //projects array
     var projects = [String]()
     //description array

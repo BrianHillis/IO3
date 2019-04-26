@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D358CC672273A2750016749F /* audioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D358CC662273A2750016749F /* audioRecordingViewController.swift */; };
 		EA02238C2256F61C009019E7 /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02238B2256F61C009019E7 /* ScheduleTableViewController.swift */; };
 		EA02238E2256FB7B009019E7 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02238D2256FB7B009019E7 /* ScheduleTableViewCell.swift */; };
 		EA0223902256FB9C009019E7 /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02238F2256FB9C009019E7 /* AddScheduleViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D358CC662273A2750016749F /* audioRecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = audioRecordingViewController.swift; sourceTree = "<group>"; };
 		EA02238B2256F61C009019E7 /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
 		EA02238D2256FB7B009019E7 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		EA02238F2256FB9C009019E7 /* AddScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D358CC652273A2190016749F /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				D358CC662273A2750016749F /* audioRecordingViewController.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		EA02238A2256F5CA009019E7 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +113,7 @@
 		EA4E4A82224ADE9400B33F19 /* IO3 */ = {
 			isa = PBXGroup;
 			children = (
+				D358CC652273A2190016749F /* Audio */,
 				EA02238A2256F5CA009019E7 /* Schedule */,
 				EA65A73A2252F1E800E7AC87 /* Home */,
 				EADBD903224D80370087C22F /* Projects */,
@@ -251,6 +262,7 @@
 				EA4E4A84224ADE9400B33F19 /* AppDelegate.swift in Sources */,
 				EA4E4A8C224ADE9400B33F19 /* IO3.xcdatamodeld in Sources */,
 				EA65A73E2252FE3000E7AC87 /* HomeTableViewCell.swift in Sources */,
+				D358CC672273A2750016749F /* audioRecordingViewController.swift in Sources */,
 				EADBD909224D9C7A0087C22F /* ProjectListTableViewController.swift in Sources */,
 				EA3B50EA224DAA4900FB7D4D /* AddProjectViewController.swift in Sources */,
 				EA3B50E8224DA34C00FB7D4D /* ProjectListTableViewCell.swift in Sources */,
