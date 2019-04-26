@@ -103,6 +103,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ipa-KI-ifH">
+                                <rect key="frame" x="42" y="478" width="46" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="oLp-Gi-5rh" kind="show" id="Cnf-9n-5e5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -119,12 +127,59 @@
                     </view>
                     <navigationItem key="navigationItem" id="0WZ-07-aE3"/>
                     <connections>
+                        <outlet property="audioButton" destination="ipa-KI-ifH" id="8HQ-R8-vxS"/>
                         <outlet property="tableView" destination="Zxi-ZS-suK" id="QZV-ia-v32"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDg-PD-E5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-972" y="578.86056971514245"/>
+        </scene>
+        <!--Audio Recording View Controller-->
+        <scene sceneID="AyF-AC-Aid">
+            <objects>
+                <viewController id="oLp-Gi-5rh" customClass="audioRecordingViewController" customModule="IO3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wty-Vw-Nmb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKV-bV-L0X">
+                                <rect key="frame" x="99" y="392" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playRecording:" destination="oLp-Gi-5rh" eventType="touchUpInside" id="XYU-Kh-Bgi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mW-VK-mio">
+                                <rect key="frame" x="215" y="392" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Record"/>
+                                <connections>
+                                    <action selector="startRecording:" destination="oLp-Gi-5rh" eventType="touchUpInside" id="SGO-Ec-sWq"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6T-bN-n8d">
+                                <rect key="frame" x="153" y="298" width="72" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="k1I-Kl-Gul"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0Xa-sD-aRA"/>
+                    <connections>
+                        <outlet property="playButton" destination="ZKV-bV-L0X" id="eJn-Iz-FuN"/>
+                        <outlet property="recordButton" destination="9mW-VK-mio" id="Ob8-Wk-yDo"/>
+                        <outlet property="recordingTimeLabel" destination="G6T-bN-n8d" id="gt6-ci-wzw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bCR-Rf-X8O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-972" y="1324"/>
         </scene>
         <!--Add Schedule View Controller-->
         <scene sceneID="Rwx-qE-fca">
