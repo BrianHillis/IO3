@@ -10,9 +10,11 @@ import UIKit
 
 class AddScheduleViewController: UIViewController {
 
+    @IBOutlet weak var datePicker: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        datePicker.setValue(UIColor.white, forKeyPath: "textColor")
         // Do any additional setup after loading the view.
     }
     
