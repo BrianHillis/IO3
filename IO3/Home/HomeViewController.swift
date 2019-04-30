@@ -8,10 +8,12 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var takePicButton: UIButton!
     //projects array
     var projects = [String]()
     //description array
@@ -21,11 +23,42 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     //day array
     var dayStart = [String]()
     
+    var imagePicker : UIImagePickerController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //load array data from ProjectListTableViewController into this view
         loadArray()
     }
+    
+    @IBAction func takePicFunc(_ sender: Any) {
+       
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func saveImage(imageName: String){
+        //create an instance of the FileManager
+        let fileManager = FileManager.default
+        //get the image path
+        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
+        //get the image we took with camera
+        let image = imageView.image!
+        //get the PNG data for this image
+        let data = image.pngData()
+        //store it in the document directory    fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        imagePicker.dismiss(animated: true, completion: nil)
+        imageView.image = info[.originalImage] as? UIImage
+    }
+    
     
     func loadArray() {
         let viewControllerData = ProjectListTableViewController()

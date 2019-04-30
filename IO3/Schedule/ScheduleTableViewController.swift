@@ -11,17 +11,44 @@ import UIKit
 class ScheduleTableViewController: UITableViewController {
     
     //schedule array
-    var schedule = [String]()
+    var schedules = [String]()
     var newSchedule: String  = ""
+    
+    var whereArray = [String]()
+    var newWhere: String = ""
+    
     //date/time array
     var dateTime = [Date]()
     var newDateTime: String = ""
     
     let scheduleDefaults = UserDefaults.standard
     let dateTimeDefaults = UserDefaults.standard
+    let whereDefaults = UserDefaults.standard
+    let noteDefaults = UserDefaults.standard
     
+    @IBAction func cancel(segue:UIStoryboardSegue) {}
+    @IBAction func done(segue:UIStoryboardSegue) {
+    
+    let AddScheduleVC = segue.source as! AddScheduleViewController
+    newSchedule = AddScheduleVC.scheduleTitle
+    newWhere = AddScheduleVC.whereString
+    //newDateTime = AddScheduleVC.strDate
+    
+    //the concatString wont go to this viewController, so i cant add it to the cells. Christian please clutch up here my guy
+        
+    schedules.insert(newSchedule, at: 0)
+    whereArray.insert(newWhere, at: 0)
+    tableView.reloadData()
+        
+    scheduleDefaults.set(schedules, forKey: "scheduleArray")
+    whereDefaults.set(whereArray, forKey: "whereArray")
+    
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scheduleDefaults.set(schedules, forKey: "scheduleArray")
+        whereDefaults.set(whereArray, forKey: "whereArray")
         
         UIDatePicker.setValue(UIColor.orange, forKeyPath: "textColor")
     }
@@ -35,7 +62,21 @@ class ScheduleTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return schedules.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath)
+        
+        if let cell = cell as? ScheduleTableViewCell {
+            //set row with data
+            cell.scheduleLabel.text = schedules[indexPath.row]
+            cell.whereWhenLabel.text = descriptions[indexPath.row]
+            cell.dateLabel.text = dateStart[indexPath.row]
+            cell.dayLabel.text = dayStart[indexPath.row]
+        }
+        
+        return cell
     }
 
     /*

@@ -103,6 +103,17 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yru-TM-rUG">
+                                <rect key="frame" x="139" y="507" width="158" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D6h-fo-QNv">
+                                <rect key="frame" x="159" y="326" width="57" height="30"/>
+                                <state key="normal" title="Take Pic"/>
+                                <connections>
+                                    <action selector="takePicFunc:" destination="PWs-k9-On8" eventType="touchUpInside" id="ukd-dG-ha7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -112,6 +123,8 @@
                             <constraint firstItem="3jv-OP-2N5" firstAttribute="centerX" secondItem="xgS-3E-O83" secondAttribute="centerX" id="Fdj-WS-vlU"/>
                             <constraint firstItem="Zxi-ZS-suK" firstAttribute="top" secondItem="xgS-3E-O83" secondAttribute="top" constant="151" id="Gzw-te-twm"/>
                             <constraint firstItem="xgS-3E-O83" firstAttribute="trailing" secondItem="Zxi-ZS-suK" secondAttribute="trailing" id="YnI-2N-IAv"/>
+                            <constraint firstItem="D6h-fo-QNv" firstAttribute="centerX" secondItem="xgS-3E-O83" secondAttribute="centerX" id="ZP6-9T-inw"/>
+                            <constraint firstItem="D6h-fo-QNv" firstAttribute="centerY" secondItem="xgS-3E-O83" secondAttribute="centerY" id="c81-7S-KCO"/>
                             <constraint firstItem="3jv-OP-2N5" firstAttribute="top" secondItem="xxO-h3-qZX" secondAttribute="topMargin" constant="40" id="jiR-aB-XE9"/>
                             <constraint firstItem="xgS-3E-O83" firstAttribute="bottom" secondItem="Zxi-ZS-suK" secondAttribute="bottom" constant="290" id="s17-TR-u9w"/>
                         </constraints>
@@ -119,7 +132,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="0WZ-07-aE3"/>
                     <connections>
+                        <outlet property="imageView" destination="yru-TM-rUG" id="Idg-H5-QZ8"/>
                         <outlet property="tableView" destination="Zxi-ZS-suK" id="QZV-ia-v32"/>
+                        <outlet property="takePicButton" destination="D6h-fo-QNv" id="bfi-Uf-U2l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDg-PD-E5J" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -142,13 +157,13 @@
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Rds-ov-Vmp">
                                             <color key="tintColor" red="1" green="0.442750853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="cancelSegue" unwindAction="cancelWithSegue:" id="bAH-hb-x36"/>
+                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="cancelSSegue" unwindAction="cancelWithSegue:" id="bAH-hb-x36"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="lDq-El-Yy4">
                                             <color key="tintColor" red="1" green="0.442750853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="doneSegue" unwindAction="doneWithSegue:" id="Tus-jP-viS"/>
+                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="doneSSegue" unwindAction="doneWithSegue:" id="Tus-jP-viS"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -240,6 +255,9 @@
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="1s3-iD-Y1f" id="kag-pO-oMR"/>
+                        <outlet property="nameTextField" destination="G9X-Ws-07k" id="Utr-vN-7ii"/>
+                        <outlet property="notesTextField" destination="gGB-6s-RH6" id="J5l-j4-lLM"/>
+                        <outlet property="whereTextField" destination="Ibu-21-dHQ" id="KXZ-Hp-dMd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fd7-hS-Ib9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -263,13 +281,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="101.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="s8h-VP-VGb">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="230" translatesAutoresizingMaskIntoConstraints="NO" id="s8h-VP-VGb" userLabel="WhereWhen Label">
                                             <rect key="frame" x="24" y="51" width="59.5" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <color key="textColor" red="1" green="0.442750853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vj7-Wu-N6H">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vj7-Wu-N6H" userLabel="Schedule Label">
                                             <rect key="frame" x="24" y="11" width="61.5" height="30"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Label">
