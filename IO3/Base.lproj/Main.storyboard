@@ -142,13 +142,13 @@
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Rds-ov-Vmp">
                                             <color key="tintColor" red="1" green="0.442750853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="cancelSegue" unwindAction="cancelWithSegue:" id="bAH-hb-x36"/>
+                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="scheduleCancel" unwindAction="cancelWithSegue:" id="Mkk-xt-cYK"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="lDq-El-Yy4">
                                             <color key="tintColor" red="1" green="0.442750853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="doneSegue" unwindAction="doneWithSegue:" id="Tus-jP-viS"/>
+                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="scheduleDone" unwindAction="doneWithSegue:" id="ZjY-lr-elX"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

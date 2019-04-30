@@ -20,6 +20,9 @@ class ScheduleTableViewController: UITableViewController {
     let scheduleDefaults = UserDefaults.standard
     let dateTimeDefaults = UserDefaults.standard
     
+    @IBAction func cancel(segue:UIStoryboardSegue) {}
+    @IBAction func done(segue:UIStoryboardSegue) {}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

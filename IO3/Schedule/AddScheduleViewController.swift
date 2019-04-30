@@ -18,6 +18,27 @@ class AddScheduleViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "doneSegue2" {
+//            projectTitle = titleTextField.text!
+//            descriptionInput = descriptionTextField.text!
+//            
+//            let now = Date()
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.dateFormat = "LLLL"
+//            let nameOfMonth = dateFormatter.string(from: now)
+//            dateString = nameOfMonth
+//            dateFormatter.dateFormat = "dd"
+//            let dayOfMonth = dateFormatter.string(from: now)
+//            dayString = dayOfMonth
+            
+        }
+        if segue.identifier == "cancelSchedule"{
+            return
+        }
+    }
+
+    
 
     /*
     // MARK: - Navigation
