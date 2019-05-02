@@ -9,6 +9,7 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate { //make sure to add these 2 things
 	
@@ -16,6 +17,9 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 	@IBOutlet weak var recordButton: UIButton!
 	@IBOutlet weak var playButton: UIButton!
 //	@IBOutlet weak var playbackSlider: UISlider!
+	@IBOutlet weak var textOutlet: UITextField!
+	
+	@IBOutlet weak var saveButton: UIButton!
 	
 	var audioRecorder: AVAudioRecorder! //declare some variables to be used later on
 	var audioPlayer : AVAudioPlayer!
@@ -24,13 +28,25 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 	var isRecording = false
 	var isPlaying = false
 	
-//	var project = Project?
+	var fileTitle:String!
+	
+	var fileName:String!
+	
+	var count = 0
+	
+	var audioFiles = [URL]()
+	
+	var files = [AudioFile]()
+	
 	
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		checkPermissions();
+		fetchAudioFiles()
+		count = files.count
+		print(count)
 	}
 	
 	func checkPermissions(){
@@ -70,7 +86,8 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 //		project.filePath = getDocumentsDirectory().appendingPathComponent(filename)
 //		print(project.filePath)
 //		return project.filePath
-		let filename = "myRecording.m4a"
+		count = files.count
+		let filename = "myRecording\(count).m4a"
 		let filePath = getDocumentsDirectory().appendingPathComponent(filename)
 		return filePath
 	}
@@ -153,8 +170,30 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 			audioRecorder = nil
 			meterTimer.invalidate()
 			print("recorded successfully.")
-			
+			//saveFile((Any).self)
+			let alert = UIAlertController(title: "Would you like to save this audio clip?", message: "", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {  action in
+				self.audioFiles.append(self.getFileUrl())
+//				for URL in self.audioFiles{
+////					print(URL)
+//				}
+
+				if let name = alert.textFields?.first?.text {
+				print("Your audio clip name: \(name)") //need to get this value out of here to set into the title, not sure how
+					self.autoSave(name: name)
+				}
+				self.count+=1
+				
+
+			}))
+			alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+			alert.addTextField(configurationHandler: {textField in
+				textField.placeholder = "Give your audio clip a name..."
+			})
+			fileName = alert.textFields?.first?.text
+			self.present(alert, animated: true)
 		}
+
 		else
 		{
 			display_alert(msg_title: "Error", msg_desc: "Recording failed.", action_title: "OK")
@@ -228,6 +267,85 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 		present(ac, animated: true)
 	}
 	
-
+	@IBAction func saveFile(_ sender: Any) {
+		
+		fileTitle = textOutlet.text
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		let managedContext = appDelegate.persistentContainer.viewContext
+		let fileEntity = NSEntityDescription.entity(forEntityName: "AudioFile", in: managedContext)!
+		let file = NSManagedObject(entity: fileEntity, insertInto: managedContext)
+		file.setValue(fileTitle, forKey: "title")
+		file.setValue(getFileUrl(), forKey: "link")
+		files.append(file as! AudioFile)
+//		print(files[0].title!)
+//		print(files[0].link!)
+		
+		for AudioFile in files{
+			print(AudioFile.title!)
+			print(AudioFile.link!)
+		}
+		
+		do{
+			try managedContext.save()
+		}
+		catch let error as NSError{
+			print("Couldn't save \(error)")
+		}
+		if(files.isEmpty){
+			print("loser")
+		}
+		else{
+			print("winner")
+		}
+	}
+	
+	func autoSave(name: String){
+		
+		fileTitle = name
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		let managedContext = appDelegate.persistentContainer.viewContext
+		let fileEntity = NSEntityDescription.entity(forEntityName: "AudioFile", in: managedContext)!
+		let file = NSManagedObject(entity: fileEntity, insertInto: managedContext)
+		file.setValue(fileTitle, forKey: "title")
+		file.setValue(getFileUrl(), forKey: "link")
+		files.append(file as! AudioFile)
+		//		print(files[0].title!)
+		//		print(files[0].link!)
+		
+		for AudioFile in files{
+			print(AudioFile.title!)
+			print(AudioFile.link!)
+		}
+		
+		do{
+			try managedContext.save()
+		}
+		catch let error as NSError{
+			print("Couldn't save \(error)")
+		}
+	}
+	
+	func fetchAudioFiles() {
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		let managedContext = appDelegate.persistentContainer.viewContext
+		let fetchRequest: NSFetchRequest<AudioFile> = AudioFile.fetchRequest()
+		//		let fetchRequestTest = NSFetchRequest<NSFetchRequestResult>(entityName: "AudioFile")
+		//		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)] // order results by category title ascending
+		
+		do {
+			files = try managedContext.fetch(fetchRequest) as! [AudioFile]
+		} catch {
+			//alertNotifyUser(message: "Fetch for audio files could not be performed.")
+			return
+		}
+		print(audioFiles.count)
+	}
+	
 }
 
