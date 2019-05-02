@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D358CC672273A2750016749F /* audioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D358CC662273A2750016749F /* audioRecordingViewController.swift */; };
+		D36CDDCA227A52E800445A38 /* AudioFileCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */; };
+		D36CDDCC227A53BF00445A38 /* AudioFileCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */; };
 		EA02238C2256F61C009019E7 /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02238B2256F61C009019E7 /* ScheduleTableViewController.swift */; };
 		EA02238E2256FB7B009019E7 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02238D2256FB7B009019E7 /* ScheduleTableViewCell.swift */; };
 		EA0223902256FB9C009019E7 /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02238F2256FB9C009019E7 /* AddScheduleViewController.swift */; };
@@ -36,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		D358CC662273A2750016749F /* audioRecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = audioRecordingViewController.swift; sourceTree = "<group>"; };
+		D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataClass.swift; sourceTree = "<group>"; };
+		D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataProperties.swift; sourceTree = "<group>"; };
 		EA02238B2256F61C009019E7 /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
 		EA02238D2256FB7B009019E7 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		EA02238F2256FB9C009019E7 /* AddScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 			isa = PBXGroup;
 			children = (
 				D358CC662273A2750016749F /* audioRecordingViewController.swift */,
+				D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */,
+				D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -258,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36CDDCC227A53BF00445A38 /* AudioFileCoreDataProperties.swift in Sources */,
 				EA02238C2256F61C009019E7 /* ScheduleTableViewController.swift in Sources */,
 				EA4E4A84224ADE9400B33F19 /* AppDelegate.swift in Sources */,
 				EA4E4A8C224ADE9400B33F19 /* IO3.xcdatamodeld in Sources */,
@@ -268,6 +275,7 @@
 				EA3B50E8224DA34C00FB7D4D /* ProjectListTableViewCell.swift in Sources */,
 				EA0223902256FB9C009019E7 /* AddScheduleViewController.swift in Sources */,
 				EA65A73C2252F67900E7AC87 /* HomeViewController.swift in Sources */,
+				D36CDDCA227A52E800445A38 /* AudioFileCoreDataClass.swift in Sources */,
 				EA02238E2256FB7B009019E7 /* ScheduleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

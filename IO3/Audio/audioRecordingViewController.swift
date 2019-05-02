@@ -9,6 +9,7 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate { //make sure to add these 2 things
 	
@@ -24,7 +25,15 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 	var isRecording = false
 	var isPlaying = false
 	
-//	var project = Project?
+	var fileTitle:String!
+	
+	var fileName:String!
+	
+	var count = 0
+	
+	var audioFiles = [URL]()
+	
+	var files = [AudioFile]()
 	
 	
 	
@@ -70,7 +79,7 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 //		project.filePath = getDocumentsDirectory().appendingPathComponent(filename)
 //		print(project.filePath)
 //		return project.filePath
-		let filename = "myRecording.m4a"
+		let filename = "myRecording\(count).m4a"
 		let filePath = getDocumentsDirectory().appendingPathComponent(filename)
 		return filePath
 	}
@@ -154,6 +163,61 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 			meterTimer.invalidate()
 			print("recorded successfully.")
 			
+			let alert = UIAlertController(title: "Would you like to save this audio clip?", message: "", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {  action in
+				self.audioFiles.append(self.getFileUrl())
+				for URL in self.audioFiles{
+					print(URL)
+				}
+				
+				if let name = alert.textFields?.first?.text {
+				print("Your audio clip name: \(name)") //need to get this value out of here to set into the title, not sure how
+				}
+				self.count+=1
+				
+			}))
+			alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+			alert.addTextField(configurationHandler: {textField in
+				textField.placeholder = "Give your audio clip a name..."
+			})
+			self.present(alert, animated: true)
+			
+			guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+				return
+			}
+			let managedContext = appDelegate.persistentContainer.viewContext
+			let fileEntity = NSEntityDescription.entity(forEntityName: "AudioFile", in: managedContext)!
+			let file = NSManagedObject(entity: fileEntity, insertInto: managedContext)
+			fileTitle = "test" //hard coding this in because I cant get the name value out of the if let statement. After that core data will be working for audio files.
+			print(fileTitle)
+			file.setValue(fileTitle, forKey: "title")
+			file.setValue(getFileUrl(), forKey: "link")
+			files.append(file as! AudioFile)
+			print(files[0].title)
+			
+			do{
+				try managedContext.save()
+			}
+			catch let error as NSError{
+				print("Couldn't save \(error)")
+			}
+//
+//			let fetchRequest: NSFetchRequest<AudioFile> = AudioFile.fetchRequest()
+//			fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)] // order results by category title ascending
+//
+//			do {
+//				files = try managedContext.fetch(fetchRequest)
+//			} catch {
+//				print("Error initializing file core data")
+//				return
+//			}
+			
+			if(files.isEmpty){
+				print("loser")
+			}
+			else{
+				print("winner")
+			}
 		}
 		else
 		{
