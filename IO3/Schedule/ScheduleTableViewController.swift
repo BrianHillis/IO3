@@ -7,21 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class ScheduleTableViewController: UITableViewController {
     
+    var scheduleTitle:String!
+    var scheduleLocation:String!
+    var scheduleWhen:Date!
+    var scheduleNote:String!
+    
     //schedule array
-    var schedule = [String]()
-    var newSchedule: String  = ""
-    //date/time array
-    var dateTime = [Date]()
-    var newDateTime: String = ""
-    
-    let scheduleDefaults = UserDefaults.standard
-    let dateTimeDefaults = UserDefaults.standard
-    
-    @IBAction func cancel(segue:UIStoryboardSegue) {}
-    @IBAction func done(segue:UIStoryboardSegue) {}
+    var schedues = [Schedule]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
