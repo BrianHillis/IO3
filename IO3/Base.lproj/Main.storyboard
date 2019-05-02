@@ -186,15 +186,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dT-rk-K4u">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6dT-rk-K4u">
                                 <rect key="frame" x="171" y="96" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="save"/>
                                 <connections>
                                     <action selector="saveFile:" destination="oLp-Gi-5rh" eventType="touchUpInside" id="wg3-Sj-ndE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rey-jv-NyD">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rey-jv-NyD">
                                 <rect key="frame" x="138.5" y="551" width="98" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="View Projects "/>
                                 <connections>
                                     <segue destination="trM-MJ-OEZ" kind="show" id="EQy-xA-JuT"/>
@@ -208,11 +210,9 @@
                             <constraint firstItem="k1I-Kl-Gul" firstAttribute="trailing" secondItem="sVF-PL-FIt" secondAttribute="trailing" id="Iej-8J-VgJ"/>
                             <constraint firstItem="9mW-VK-mio" firstAttribute="top" secondItem="G6T-bN-n8d" secondAttribute="bottom" constant="63" id="M4M-MC-fOn"/>
                             <constraint firstItem="sVF-PL-FIt" firstAttribute="centerX" secondItem="k1I-Kl-Gul" secondAttribute="centerX" id="NgM-FX-Zw7"/>
-                            <constraint firstItem="6dT-rk-K4u" firstAttribute="centerX" secondItem="k1I-Kl-Gul" secondAttribute="centerX" id="RTG-bV-SZK"/>
                             <constraint firstItem="G6T-bN-n8d" firstAttribute="top" secondItem="sVF-PL-FIt" secondAttribute="bottom" constant="10" id="SWd-nB-aKQ"/>
                             <constraint firstItem="G6T-bN-n8d" firstAttribute="centerX" secondItem="k1I-Kl-Gul" secondAttribute="centerX" id="TLe-3D-QVx"/>
                             <constraint firstItem="9mW-VK-mio" firstAttribute="centerX" secondItem="G6T-bN-n8d" secondAttribute="centerX" id="deO-iK-uno"/>
-                            <constraint firstItem="rey-jv-NyD" firstAttribute="centerX" secondItem="k1I-Kl-Gul" secondAttribute="centerX" id="kSG-3W-imX"/>
                             <constraint firstItem="G6T-bN-n8d" firstAttribute="top" secondItem="k1I-Kl-Gul" secondAttribute="top" constant="198" id="ugj-q7-Vyv"/>
                             <constraint firstItem="ZKV-bV-L0X" firstAttribute="centerX" secondItem="9mW-VK-mio" secondAttribute="centerX" id="xxz-zH-tqb"/>
                         </constraints>
