@@ -38,9 +38,6 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 	
 	var files = [AudioFile]()
 	
-	
-	
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		checkPermissions();
