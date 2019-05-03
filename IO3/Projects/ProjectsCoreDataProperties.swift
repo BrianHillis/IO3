@@ -17,5 +17,8 @@ extension Project {
 	}
 	
 	@NSManaged public var title: String?
+	@NSManaged public var date: String?
+	@NSManaged public var day: String?
+	@NSManaged public var info: String?
 	
 }

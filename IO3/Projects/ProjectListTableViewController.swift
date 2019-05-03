@@ -55,7 +55,7 @@ class ProjectListTableViewController: UITableViewController {
         tableView.reloadData()
         
         //set local storage
-        projectDefaults.set(projects, forKey: "projectArray")
+//        projectDefaults.set(projects, forKey: "projectArray")
         descriptionDefaults.set(descriptions, forKey: "descriptionArray")
         dateDefaults.set(dateStart, forKey: "dateArray")
         dayDefaults.set(dayStart, forKey: "dayArray")
@@ -94,9 +94,9 @@ class ProjectListTableViewController: UITableViewController {
         if let cell = cell as? ProjectListTableViewCell {
             //set row with data
             cell.projectLabel.text = projects[indexPath.row].title
-            cell.descriptionLabel.text = descriptions[indexPath.row]
-            cell.dateLabel.text = dateStart[indexPath.row]
-            cell.dayLabel.text = dayStart[indexPath.row]
+            cell.descriptionLabel.text = projects[indexPath.row].info
+            cell.dateLabel.text = projects[indexPath.row].date
+            cell.dayLabel.text = projects[indexPath.row].day
         }
 
         return cell
@@ -105,17 +105,18 @@ class ProjectListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             //remove data from row
-            projects.remove(at: indexPath.row)
-            descriptions.remove(at: indexPath.row)
-            dateStart.remove(at: indexPath.row)
-            dayStart.remove(at: indexPath.row)
-            //update local storage
-            projectDefaults.set(projects, forKey: "projectArray")
-            descriptionDefaults.set(descriptions, forKey: "descriptionArray") 
-            dateDefaults.set(dateStart, forKey: "dateArray")
-            dayDefaults.set(dayStart, forKey: "dayArray")
-            //physically remove row
-            tableView.deleteRows(at: [indexPath], with: .fade)
+//            projects.remove(at: indexPath.row)
+//            descriptions.remove(at: indexPath.row)
+//            dateStart.remove(at: indexPath.row)
+//            dayStart.remove(at: indexPath.row)
+//            //update local storage
+////            projectDefaults.set(projects, forKey: "projectArray")
+//            descriptionDefaults.set(descriptions, forKey: "descriptionArray")
+//            dateDefaults.set(dateStart, forKey: "dateArray")
+//            dayDefaults.set(dayStart, forKey: "dayArray")
+//            //physically remove row
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+			deleteData(i: indexPath.row)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
@@ -148,6 +149,9 @@ class ProjectListTableViewController: UITableViewController {
 		let projectEntity = NSEntityDescription.entity(forEntityName: "Project", in: managedContext)!
 		let project = NSManagedObject(entity: projectEntity, insertInto: managedContext)
 		project.setValue(newProject, forKey: "title")
+		project.setValue(newDate, forKey: "date")
+		project.setValue(newDay, forKey: "day")
+		project.setValue(newDescription, forKey: "info")
 		projects.append(project as! Project)
 		//		print(files[0].title!)
 		//		print(files[0].link!)
@@ -162,6 +166,31 @@ class ProjectListTableViewController: UITableViewController {
 		catch let error as NSError{
 			print("Couldn't save \(error)")
 		}
+	}
+	
+	func deleteData(i: Int){
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		let managedContext = appDelegate.persistentContainer.viewContext
+		let fetchRequest: NSFetchRequest<Project> = Project.fetchRequest()
+		do{
+			let proj = try managedContext.fetch(fetchRequest)
+			
+			let goodbye = proj[i] as NSManagedObject
+			managedContext.delete(goodbye)
+			
+			do{
+				try managedContext.save()
+			}
+			catch{
+				print("oh no")
+			}
+		}
+		catch{
+			print("rats")
+		}
+		tableView.reloadData()
 	}
 
     /*
