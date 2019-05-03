@@ -46,19 +46,19 @@ class ProjectListTableViewController: UITableViewController {
         
         //insert data at the front of the array
 //        projects.insert(newProject, at: 0)
-        descriptions.insert(newDescription, at: 0)
-        dateStart.insert(newDate, at: 0)
-        dayStart.insert(newDay, at: 0)
+//        descriptions.insert(newDescription, at: 0)
+//        dateStart.insert(newDate, at: 0)
+//        dayStart.insert(newDay, at: 0)
 		
 		autoSave()
 		
         tableView.reloadData()
         
-        //set local storage
-//        projectDefaults.set(projects, forKey: "projectArray")
-        descriptionDefaults.set(descriptions, forKey: "descriptionArray")
-        dateDefaults.set(dateStart, forKey: "dateArray")
-        dayDefaults.set(dayStart, forKey: "dayArray")
+//        //set local storage
+////        projectDefaults.set(projects, forKey: "projectArray")
+//        descriptionDefaults.set(descriptions, forKey: "descriptionArray")
+//        dateDefaults.set(dateStart, forKey: "dateArray")
+//        dayDefaults.set(dayStart, forKey: "dayArray")
     }
     
     override func viewDidLoad() {
@@ -68,10 +68,10 @@ class ProjectListTableViewController: UITableViewController {
         
         //load data from local storage
 //        projects = projectDefaults.stringArray(forKey: "projectArray") ?? [String]()
-        descriptions = descriptionDefaults.stringArray(forKey: "descriptionArray") ?? [String]()
-        dateStart = dateDefaults.stringArray(forKey: "dateArray") ?? [String]()
-        dayStart = dateDefaults.stringArray(forKey: "dayArray") ?? [String]()
-        
+//        descriptions = descriptionDefaults.stringArray(forKey: "descriptionArray") ?? [String]()
+//        dateStart = dateDefaults.stringArray(forKey: "dateArray") ?? [String]()
+//        dayStart = dateDefaults.stringArray(forKey: "dayArray") ?? [String]()
+		
         
         
     }
@@ -117,6 +117,8 @@ class ProjectListTableViewController: UITableViewController {
 //            //physically remove row
 //            tableView.deleteRows(at: [indexPath], with: .fade)
 			deleteData(i: indexPath.row)
+			fetchProjects()
+			tableView.reloadData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
@@ -156,9 +158,9 @@ class ProjectListTableViewController: UITableViewController {
 		//		print(files[0].title!)
 		//		print(files[0].link!)
 		
-		for Project in projects{
-			print(Project.title!)
-		}
+//		for Project in projects{
+//			print(Project.title!)
+//		}
 		
 		do{
 			try managedContext.save()
@@ -176,7 +178,7 @@ class ProjectListTableViewController: UITableViewController {
 		let fetchRequest: NSFetchRequest<Project> = Project.fetchRequest()
 		do{
 			let proj = try managedContext.fetch(fetchRequest)
-			
+			print(proj)
 			let goodbye = proj[i] as NSManagedObject
 			managedContext.delete(goodbye)
 			
@@ -190,7 +192,7 @@ class ProjectListTableViewController: UITableViewController {
 		catch{
 			print("rats")
 		}
-		tableView.reloadData()
+		
 	}
 
     /*
