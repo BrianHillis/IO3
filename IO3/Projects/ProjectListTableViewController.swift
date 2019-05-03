@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class ProjectListTableViewController: UITableViewController {
     //projects array
-    var projects = [String]()
+	var projects = [Project]()
+	
+	
+//    var projects = [String]()
     var newProject: String  = ""
     //description array
     var descriptions = [String]()
@@ -41,10 +45,13 @@ class ProjectListTableViewController: UITableViewController {
         newDay = AddProjectVC.dayString
         
         //insert data at the front of the array
-        projects.insert(newProject, at: 0)
+//        projects.insert(newProject, at: 0)
         descriptions.insert(newDescription, at: 0)
         dateStart.insert(newDate, at: 0)
         dayStart.insert(newDay, at: 0)
+		
+		autoSave()
+		
         tableView.reloadData()
         
         //set local storage
@@ -56,9 +63,11 @@ class ProjectListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		fetchProjects()
         
         //load data from local storage
-        projects = projectDefaults.stringArray(forKey: "projectArray") ?? [String]()
+//        projects = projectDefaults.stringArray(forKey: "projectArray") ?? [String]()
         descriptions = descriptionDefaults.stringArray(forKey: "descriptionArray") ?? [String]()
         dateStart = dateDefaults.stringArray(forKey: "dateArray") ?? [String]()
         dayStart = dateDefaults.stringArray(forKey: "dayArray") ?? [String]()
@@ -84,7 +93,7 @@ class ProjectListTableViewController: UITableViewController {
 
         if let cell = cell as? ProjectListTableViewCell {
             //set row with data
-            cell.projectLabel.text = projects[indexPath.row]
+            cell.projectLabel.text = projects[indexPath.row].title
             cell.descriptionLabel.text = descriptions[indexPath.row]
             cell.dateLabel.text = dateStart[indexPath.row]
             cell.dayLabel.text = dayStart[indexPath.row]
@@ -102,7 +111,7 @@ class ProjectListTableViewController: UITableViewController {
             dayStart.remove(at: indexPath.row)
             //update local storage
             projectDefaults.set(projects, forKey: "projectArray")
-            descriptionDefaults.set(descriptions, forKey: "descriptionArray")
+            descriptionDefaults.set(descriptions, forKey: "descriptionArray") 
             dateDefaults.set(dateStart, forKey: "dateArray")
             dayDefaults.set(dayStart, forKey: "dayArray")
             //physically remove row
@@ -111,7 +120,49 @@ class ProjectListTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
- 
+	
+	func fetchProjects() {
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		let managedContext = appDelegate.persistentContainer.viewContext
+		let fetchRequest: NSFetchRequest<Project> = Project.fetchRequest()
+		//		let fetchRequestTest = NSFetchRequest<NSFetchRequestResult>(entityName: "AudioFile")
+		//		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)] // order results by category title ascending
+		
+		do {
+			projects = try managedContext.fetch(fetchRequest)
+		} catch {
+			//alertNotifyUser(message: "Fetch for audio files could not be performed.")
+			return
+		}
+		print(projects.count)
+	}
+	
+	func autoSave(){
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		let managedContext = appDelegate.persistentContainer.viewContext
+		let projectEntity = NSEntityDescription.entity(forEntityName: "Project", in: managedContext)!
+		let project = NSManagedObject(entity: projectEntity, insertInto: managedContext)
+		project.setValue(newProject, forKey: "title")
+		projects.append(project as! Project)
+		//		print(files[0].title!)
+		//		print(files[0].link!)
+		
+		for Project in projects{
+			print(Project.title!)
+		}
+		
+		do{
+			try managedContext.save()
+		}
+		catch let error as NSError{
+			print("Couldn't save \(error)")
+		}
+	}
 
     /*
      Override to support conditional editing of the table view.
