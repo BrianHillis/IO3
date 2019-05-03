@@ -35,8 +35,6 @@ class ProjectListTableViewController: UITableViewController {
     @IBAction func cancel(segue:UIStoryboardSegue) {}
     @IBAction func done(segue:UIStoryboardSegue) {
         
-        
-        
         //load data gained from AddProjectViewController
         let AddProjectVC = segue.source as! AddProjectViewController
         newProject = AddProjectVC.projectTitle

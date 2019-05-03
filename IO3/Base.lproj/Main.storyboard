@@ -122,6 +122,12 @@
                                     <color key="titleColor" red="1" green="0.442750853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next on Your Schedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkl-0T-N2O">
+                                <rect key="frame" x="70" y="351" width="235" height="23"/>
+                                <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -130,8 +136,10 @@
                             <constraint firstItem="2Fc-kw-zKt" firstAttribute="centerX" secondItem="xgS-3E-O83" secondAttribute="centerX" id="Bby-v1-nAc"/>
                             <constraint firstItem="3jv-OP-2N5" firstAttribute="centerX" secondItem="xgS-3E-O83" secondAttribute="centerX" id="Fdj-WS-vlU"/>
                             <constraint firstItem="Zxi-ZS-suK" firstAttribute="top" secondItem="xgS-3E-O83" secondAttribute="top" constant="151" id="Gzw-te-twm"/>
+                            <constraint firstItem="Tkl-0T-N2O" firstAttribute="centerX" secondItem="xgS-3E-O83" secondAttribute="centerX" id="MLS-oJ-Xw1"/>
                             <constraint firstItem="xgS-3E-O83" firstAttribute="trailing" secondItem="Zxi-ZS-suK" secondAttribute="trailing" id="YnI-2N-IAv"/>
                             <constraint firstItem="3jv-OP-2N5" firstAttribute="top" secondItem="xxO-h3-qZX" secondAttribute="topMargin" constant="40" id="jiR-aB-XE9"/>
+                            <constraint firstItem="Tkl-0T-N2O" firstAttribute="top" secondItem="Zxi-ZS-suK" secondAttribute="bottom" constant="23" id="oyx-Bq-CfM"/>
                             <constraint firstItem="xgS-3E-O83" firstAttribute="bottom" secondItem="Zxi-ZS-suK" secondAttribute="bottom" constant="290" id="s17-TR-u9w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xgS-3E-O83"/>
@@ -307,13 +315,13 @@
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Rds-ov-Vmp">
                                             <color key="tintColor" red="1" green="0.442750853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="scheduleCancel" unwindAction="cancelWithSegue:" id="Mkk-xt-cYK"/>
+                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="cancelSchedule" unwindAction="doneWithScheduleWithSegue:" id="GNA-Tm-k5b"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="lDq-El-Yy4">
                                             <color key="tintColor" red="1" green="0.442750853" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
-                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="scheduleDone" unwindAction="doneWithSegue:" id="ZjY-lr-elX"/>
+                                                <segue destination="dgi-ud-9nH" kind="unwind" identifier="doneWithSchedule" unwindAction="doneWithScheduleWithSegue:" id="Q8l-E3-5tL"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -404,7 +412,10 @@
                         <viewLayoutGuide key="safeArea" id="R8G-Yt-6lH"/>
                     </view>
                     <connections>
-                        <outlet property="datePicker" destination="1s3-iD-Y1f" id="kag-pO-oMR"/>
+                        <outlet property="locationTextField" destination="Ibu-21-dHQ" id="sub-rf-a7b"/>
+                        <outlet property="notesTextField" destination="gGB-6s-RH6" id="AqJ-Zb-WvD"/>
+                        <outlet property="titleTextField" destination="G9X-Ws-07k" id="gVs-Vb-AQE"/>
+                        <outlet property="whenDatePicker" destination="1s3-iD-Y1f" id="kT7-no-bOT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fd7-hS-Ib9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -415,13 +426,13 @@
         <!--Schedules-->
         <scene sceneID="lDF-b4-sJo">
             <objects>
-                <tableViewController id="WIp-bg-bP0" sceneMemberID="viewController">
+                <tableViewController id="WIp-bg-bP0" customClass="ScheduleTableViewController" customModule="IO3" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eLG-si-p6C">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="scheduleCell" rowHeight="102" id="fGe-sD-aK2" userLabel="scheduleCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="scheduleCell" rowHeight="102" id="fGe-sD-aK2" userLabel="scheduleCell" customClass="ScheduleTableViewCell" customModule="IO3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fGe-sD-aK2" id="NBo-LA-Wr2">
@@ -460,8 +471,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="descriptionLabel" destination="s8h-VP-VGb" id="Xqh-62-sn9"/>
-                                    <outlet property="projectLabel" destination="vj7-Wu-N6H" id="0jO-gE-WI4"/>
+                                    <outlet property="scheduleTitleLabel" destination="vj7-Wu-N6H" id="Ajo-df-yK5"/>
+                                    <outlet property="timeLocationLabel" destination="s8h-VP-VGb" id="MJo-cP-Gnv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
