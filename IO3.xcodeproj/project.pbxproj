@@ -11,6 +11,8 @@
 		D36CDDCA227A52E800445A38 /* AudioFileCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */; };
 		D36CDDCC227A53BF00445A38 /* AudioFileCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */; };
 		D36CDDEC227B2A9E00445A38 /* audioRecordingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDEB227B2A9E00445A38 /* audioRecordingTableViewController.swift */; };
+		D36CDDEE227B688B00445A38 /* ProjectsCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDED227B688B00445A38 /* ProjectsCoreDataClass.swift */; };
+		D36CDDF0227B68AC00445A38 /* ProjectsCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDEF227B68AC00445A38 /* ProjectsCoreDataProperties.swift */; };
 		EA02238C2256F61C009019E7 /* ScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02238B2256F61C009019E7 /* ScheduleTableViewController.swift */; };
 		EA02238E2256FB7B009019E7 /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02238D2256FB7B009019E7 /* ScheduleTableViewCell.swift */; };
 		EA0223902256FB9C009019E7 /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02238F2256FB9C009019E7 /* AddScheduleViewController.swift */; };
@@ -44,6 +46,8 @@
 		D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataClass.swift; sourceTree = "<group>"; };
 		D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataProperties.swift; sourceTree = "<group>"; };
 		D36CDDEB227B2A9E00445A38 /* audioRecordingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioRecordingTableViewController.swift; sourceTree = "<group>"; };
+		D36CDDED227B688B00445A38 /* ProjectsCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCoreDataClass.swift; sourceTree = "<group>"; };
+		D36CDDEF227B68AC00445A38 /* ProjectsCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCoreDataProperties.swift; sourceTree = "<group>"; };
 		EA02238B2256F61C009019E7 /* ScheduleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewController.swift; sourceTree = "<group>"; };
 		EA02238D2256FB7B009019E7 /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		EA02238F2256FB9C009019E7 /* AddScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				EADBD908224D9C7A0087C22F /* ProjectListTableViewController.swift */,
 				EA3B50E7224DA34C00FB7D4D /* ProjectListTableViewCell.swift */,
 				EA3B50E9224DAA4900FB7D4D /* AddProjectViewController.swift */,
+				D36CDDED227B688B00445A38 /* ProjectsCoreDataClass.swift */,
+				D36CDDEF227B68AC00445A38 /* ProjectsCoreDataProperties.swift */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -281,9 +287,11 @@
 				D36CDDEC227B2A9E00445A38 /* audioRecordingTableViewController.swift in Sources */,
 				EA65A73E2252FE3000E7AC87 /* HomeTableViewCell.swift in Sources */,
 				D358CC672273A2750016749F /* audioRecordingViewController.swift in Sources */,
+				D36CDDEE227B688B00445A38 /* ProjectsCoreDataClass.swift in Sources */,
 				EADBD909224D9C7A0087C22F /* ProjectListTableViewController.swift in Sources */,
 				EAFFB771227B689300FC898D /* SchedulesCoreDataClass.swift in Sources */,
 				EA3B50EA224DAA4900FB7D4D /* AddProjectViewController.swift in Sources */,
+				D36CDDF0227B68AC00445A38 /* ProjectsCoreDataProperties.swift in Sources */,
 				EA3B50E8224DA34C00FB7D4D /* ProjectListTableViewCell.swift in Sources */,
 				EA0223902256FB9C009019E7 /* AddScheduleViewController.swift in Sources */,
 				EA65A73C2252F67900E7AC87 /* HomeViewController.swift in Sources */,

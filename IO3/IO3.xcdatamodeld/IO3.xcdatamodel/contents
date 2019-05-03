@@ -6,6 +6,9 @@
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="audioFiles" inverseEntity="Project" syncable="YES"/>
     </entity>
     <entity name="Project" representedClassName="Project" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="info" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="audioFiles" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AudioFile" inverseName="project" inverseEntity="AudioFile" syncable="YES"/>
     </entity>
@@ -17,7 +20,6 @@
     </entity>
     <elements>
         <element name="AudioFile" positionX="-36" positionY="36" width="128" height="90"/>
-        <element name="Project" positionX="-54" positionY="18" width="128" height="75"/>
-        <element name="Schedule" positionX="-45" positionY="36" width="128" height="105"/>
+        <element name="Project" positionX="-54" positionY="18" width="128" height="120"/>
     </elements>
 </model>
