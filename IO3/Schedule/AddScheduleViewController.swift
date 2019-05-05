@@ -23,7 +23,7 @@ class AddScheduleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        whenDatePicker.setValue(UIColor.white, forKeyPath: "textColor")
+        whenDatePicker.setValue(UIColor.green, forKeyPath: "textColor")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

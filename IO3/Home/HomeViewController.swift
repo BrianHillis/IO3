@@ -28,6 +28,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         //load array data from ProjectListTableViewController into this view
 //        loadArray()
+        audioButton.layer.cornerRadius = 5
+        audioButton.layer.borderWidth = 1
+        audioButton.layer.borderColor = UIColor.green.cgColor
+        
 		fetchProjects()
 		tableView.reloadData()
     }
@@ -50,9 +54,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(projects.count >= 2){
-            return 2
-        }
         return 1
     }
     
