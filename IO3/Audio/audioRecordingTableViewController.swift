@@ -8,12 +8,16 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
-class audioRecordingTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class audioRecordingTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate{
 
 	@IBOutlet var audioRecordingTableView: UITableView!
 	
 	var audioFiles = [AudioFile]()
+	
+	var audioPlayer : AVAudioPlayer!
+	var isPlaying = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -106,8 +110,51 @@ class audioRecordingTableViewController: UIViewController, UITableViewDataSource
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		//print("section: \(indexPath.section)")
-		
+		playRecording(ind: indexPath.row)
 		print("row: \(indexPath.row)")
+		print(audioFiles[indexPath.row].link!.path)
 	}
 	
+	func prepare_play(i: Int)
+	{
+		do
+		{
+			audioPlayer = try AVAudioPlayer(contentsOf: audioFiles[i].link!)
+			audioPlayer.delegate = self as AVAudioPlayerDelegate
+			audioPlayer.prepareToPlay()
+		}
+		catch{
+			print("Error4")
+		}
+	}
+	
+	func playRecording(ind: Int) {
+		if(isPlaying)
+		{
+			audioPlayer.stop()
+//			recordButton.isEnabled = true
+//			playButton.setTitle("Play", for: .normal)
+			isPlaying = false
+		}
+		else
+		{
+			if FileManager.default.fileExists(atPath: audioFiles[ind].link!.path)
+			{
+//				recordButton.isEnabled = false
+//				playButton.setTitle("pause", for: .normal)
+				prepare_play(i: ind)
+				audioPlayer.play()
+				isPlaying = true
+			}
+			else
+			{
+//				prepare_play(i: ind)
+//				audioPlayer.play()
+				print(audioFiles[ind].link?.path)
+				print("Big error")
+//				display_alert(msg_title: "Error", msg_desc: "Audio file is missing.", action_title: "OK")
+				
+			}
+		}
+	}
 }

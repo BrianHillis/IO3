@@ -202,7 +202,8 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 	{
 		do
 		{
-			audioPlayer = try AVAudioPlayer(contentsOf: getFileUrl())
+//			audioPlayer = try AVAudioPlayer(contentsOf: getFileUrl())
+			audioPlayer = try AVAudioPlayer(contentsOf: files[files.count-1].link!)
 			audioPlayer.delegate = self
 			audioPlayer.prepareToPlay()
 		}
@@ -221,7 +222,8 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 		}
 		else
 		{
-			if FileManager.default.fileExists(atPath: getFileUrl().path)
+//			if FileManager.default.fileExists(atPath: getFileUrl().path)
+			if FileManager.default.fileExists(atPath: files[files.count-1].link!.path)
 			{
 				recordButton.isEnabled = false
 				playButton.setTitle("pause", for: .normal)
@@ -314,8 +316,8 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 		//		print(files[0].link!)
 		
 		for AudioFile in files{
-			print(AudioFile.title!)
-			print(AudioFile.link!)
+//			print(AudioFile.title!)
+//			print(AudioFile.link!)
 		}
 		
 		do{
