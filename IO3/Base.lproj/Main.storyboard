@@ -179,7 +179,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKV-bV-L0X">
-                                <rect key="frame" x="125" y="370" width="124" height="63"/>
+                                <rect key="frame" x="120" y="370" width="135" height="63"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                 <color key="tintColor" red="0.0088609646410000003" green="0.79019273479999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Play" image="circled_play">
@@ -192,11 +192,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ZKV-bV-L0X" firstAttribute="leading" secondItem="k1I-Kl-Gul" secondAttribute="leading" constant="125" id="2G2-BT-P9L"/>
-                            <constraint firstItem="k1I-Kl-Gul" firstAttribute="trailing" secondItem="ZKV-bV-L0X" secondAttribute="trailing" constant="126" id="93p-6u-mQS"/>
                             <constraint firstItem="rey-jv-NyD" firstAttribute="leading" secondItem="k1I-Kl-Gul" secondAttribute="leading" constant="77" id="DZN-Y5-aV1"/>
                             <constraint firstItem="k1I-Kl-Gul" firstAttribute="bottom" secondItem="rey-jv-NyD" secondAttribute="bottom" constant="20" id="J29-ew-KKv"/>
+                            <constraint firstItem="k1I-Kl-Gul" firstAttribute="trailing" secondItem="ZKV-bV-L0X" secondAttribute="trailing" constant="120" id="Mf1-ub-eh1"/>
                             <constraint firstItem="k1I-Kl-Gul" firstAttribute="trailing" secondItem="rey-jv-NyD" secondAttribute="trailing" constant="77" id="NxG-lO-lEy"/>
+                            <constraint firstItem="ZKV-bV-L0X" firstAttribute="leading" secondItem="k1I-Kl-Gul" secondAttribute="leading" constant="120" id="Sbe-rv-wKz"/>
                             <constraint firstItem="k1I-Kl-Gul" firstAttribute="trailing" secondItem="9mW-VK-mio" secondAttribute="trailing" constant="124" id="d8a-pi-40U"/>
                             <constraint firstItem="G6T-bN-n8d" firstAttribute="leading" secondItem="k1I-Kl-Gul" secondAttribute="leading" constant="42" id="mI4-QU-c8d"/>
                             <constraint firstItem="9mW-VK-mio" firstAttribute="top" secondItem="G6T-bN-n8d" secondAttribute="bottom" constant="87.5" id="nmn-wV-nPM"/>
