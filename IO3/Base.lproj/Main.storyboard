@@ -144,6 +144,21 @@
             </objects>
             <point key="canvasLocation" x="-972" y="578.86056971514245"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="8OF-pJ-hI5">
+            <objects>
+                <viewController id="db4-QF-YMM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hgJ-Nh-xnS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="N5f-fE-JlU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DGG-9U-N9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1724" y="1324"/>
+        </scene>
         <!--Record Audio-->
         <scene sceneID="AyF-AC-Aid">
             <objects>
@@ -455,6 +470,7 @@
                                 <connections>
                                     <outlet property="scheduleTitleLabel" destination="vj7-Wu-N6H" id="Ajo-df-yK5"/>
                                     <outlet property="timeLocationLabel" destination="s8h-VP-VGb" id="MJo-cP-Gnv"/>
+                                    <segue destination="db4-QF-YMM" kind="show" id="PZE-G1-GGk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
