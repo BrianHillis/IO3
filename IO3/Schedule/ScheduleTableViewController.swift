@@ -18,6 +18,12 @@ class ScheduleTableViewController: UITableViewController {
     var scheduleLocation:String!
     var scheduleWhen:Date!
     var scheduleNote:String!
+    struct globalVariable{
+        static var nextTitle = String()
+        static var nextTime = Date()
+        static var nextWhere = String()
+        static var nextNote = String()
+    }
     
     @IBAction func cancelSchedule(segue: UIStoryboardSegue) {}
     @IBAction func doneWithSchedule(segue: UIStoryboardSegue) {
@@ -28,6 +34,7 @@ class ScheduleTableViewController: UITableViewController {
         scheduleLocation = AddScheduleVC.scheduleLocation
         scheduleWhen = AddScheduleVC.scheduleTime
         scheduleNote = AddScheduleVC.scheduleNotes
+        
 
         autoSave()
         
@@ -37,7 +44,6 @@ class ScheduleTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("HELLO")
         fetchSchedules()
         
     }
@@ -54,9 +60,7 @@ class ScheduleTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("CHECK 1")
         let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath)
-        print("CHECK 2")
         if let cell = cell as? ScheduleTableViewCell {
             //set row with data
             cell.scheduleTitleLabel.text = schedules[indexPath.row].title
@@ -77,7 +81,6 @@ class ScheduleTableViewController: UITableViewController {
     }
     
     func fetchSchedules() {
-        print("AM I HERE")
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -87,10 +90,8 @@ class ScheduleTableViewController: UITableViewController {
         do {
             schedules = try managedContext.fetch(fetchRequest)
         } catch {
-            print("FAILED")
             return
         }
-        print("Number of schedules: \(schedules.count)")
     }
     
     func autoSave(){
@@ -131,13 +132,22 @@ class ScheduleTableViewController: UITableViewController {
                 try managedContext.save()
             }
             catch{
-                print("Pesky Cracker")
+                print("catch 1")
             }
         }
         catch{
-            print("whatever")
+            print("catch 2")
         }
         
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let schedule = schedules[indexPath.row]
+        globalVariable.nextTitle = schedule.title!
+        globalVariable.nextTime = schedule.timeOfDay!
+        globalVariable.nextWhere = schedule.location!
+        globalVariable.nextNote = schedule.information!
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     
