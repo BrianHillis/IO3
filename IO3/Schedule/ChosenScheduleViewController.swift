@@ -18,12 +18,24 @@ class ChosenScheduleViewController: UIViewController {
     
     var schedules = [Schedule()]
     var indexHere:Int!
+    var dateFormatter = DateFormatter()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .long
+        dateFormatter.dateFormat = "MM-dd-yyyy ',' hh:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let dateString = dateFormatter.string(from: ScheduleTableViewController.globalVariable.nextTime)
+        
         titleLabel.text = ScheduleTableViewController.globalVariable.nextTitle
         locationLabel.text = ScheduleTableViewController.globalVariable.nextWhere
-        timeLabel.text = "\(ScheduleTableViewController.globalVariable.nextTime)"
+        timeLabel.text = dateString
         noteLabel.text = ScheduleTableViewController.globalVariable.nextNote
         //titleLabel.text = schedules[ScheduleTableViewController.globalVariable.index].title
     }
