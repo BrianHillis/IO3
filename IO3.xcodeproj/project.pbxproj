@@ -44,7 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D3243F3C228A1C680019139F /* SingleProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleProjectTableViewController.swift; path = ../../../../../../Downloads/SingleProjectTableViewController.swift; sourceTree = "<group>"; };
+		D3243F3C228A1C680019139F /* SingleProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleProjectTableViewController.swift; path = "/Users/brian/Documents/School/IT 4500/IO3/../../../../Downloads/SingleProjectTableViewController.swift"; sourceTree = "<absolute>"; };
 		D358CC662273A2750016749F /* audioRecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = audioRecordingViewController.swift; sourceTree = "<group>"; };
 		D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataClass.swift; sourceTree = "<group>"; };
 		D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataProperties.swift; sourceTree = "<group>"; };
