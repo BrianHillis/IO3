@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D3243F3D228A1C680019139F /* SingleProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3243F3C228A1C680019139F /* SingleProjectTableViewController.swift */; };
 		D358CC672273A2750016749F /* audioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D358CC662273A2750016749F /* audioRecordingViewController.swift */; };
 		D36CDDCA227A52E800445A38 /* AudioFileCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */; };
 		D36CDDCC227A53BF00445A38 /* AudioFileCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D3243F3C228A1C680019139F /* SingleProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleProjectTableViewController.swift; path = ../../../../../../Downloads/SingleProjectTableViewController.swift; sourceTree = "<group>"; };
 		D358CC662273A2750016749F /* audioRecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = audioRecordingViewController.swift; sourceTree = "<group>"; };
 		D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataClass.swift; sourceTree = "<group>"; };
 		D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataProperties.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		EADBD903224D80370087C22F /* Projects */ = {
 			isa = PBXGroup;
 			children = (
+				D3243F3C228A1C680019139F /* SingleProjectTableViewController.swift */,
 				EADBD908224D9C7A0087C22F /* ProjectListTableViewController.swift */,
 				EA3B50E7224DA34C00FB7D4D /* ProjectListTableViewCell.swift */,
 				EA3B50E9224DAA4900FB7D4D /* AddProjectViewController.swift */,
@@ -295,6 +298,7 @@
 				EADBD909224D9C7A0087C22F /* ProjectListTableViewController.swift in Sources */,
 				EAFFB771227B689300FC898D /* SchedulesCoreDataClass.swift in Sources */,
 				EA3B50EA224DAA4900FB7D4D /* AddProjectViewController.swift in Sources */,
+				D3243F3D228A1C680019139F /* SingleProjectTableViewController.swift in Sources */,
 				D36CDDF0227B68AC00445A38 /* ProjectsCoreDataProperties.swift in Sources */,
 				EA3B50E8224DA34C00FB7D4D /* ProjectListTableViewCell.swift in Sources */,
 				EA0223902256FB9C009019E7 /* AddScheduleViewController.swift in Sources */,
