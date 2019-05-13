@@ -1,7 +1,7 @@
 # IO3
 Interview Organizer final project for IT 4500
 
-This app is meant to streamline the process of collecting and organizing journalist's interview data
+This app is meant to streamline the process of collecting and organizing journalists' interview data
 
 ## Team 3:
 #### Developers
