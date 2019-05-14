@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA12A4CA228B2ED7004C6C29 /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA12A4C9228B2ED7004C6C29 /* PhotosCollectionViewController.swift */; };
 		BA40180D228A217B0031BA69 /* SingleProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA40180C228A217B0031BA69 /* SingleProjectTableViewController.swift */; };
+		BAC59203228B3C2500539D57 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC59202228B3C2500539D57 /* PhotoCollectionViewCell.swift */; };
 		D358CC672273A2750016749F /* audioRecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D358CC662273A2750016749F /* audioRecordingViewController.swift */; };
 		D36CDDCA227A52E800445A38 /* AudioFileCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */; };
 		D36CDDCC227A53BF00445A38 /* AudioFileCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */; };
@@ -44,7 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA12A4C9228B2ED7004C6C29 /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		BA40180C228A217B0031BA69 /* SingleProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleProjectTableViewController.swift; sourceTree = "<group>"; };
+		BAC59202228B3C2500539D57 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		D358CC662273A2750016749F /* audioRecordingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = audioRecordingViewController.swift; sourceTree = "<group>"; };
 		D36CDDC9227A52E800445A38 /* AudioFileCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataClass.swift; sourceTree = "<group>"; };
 		D36CDDCB227A53BF00445A38 /* AudioFileCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFileCoreDataProperties.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 				EA3B50E9224DAA4900FB7D4D /* AddProjectViewController.swift */,
 				D36CDDED227B688B00445A38 /* ProjectsCoreDataClass.swift */,
 				D36CDDEF227B68AC00445A38 /* ProjectsCoreDataProperties.swift */,
+				BA12A4C9228B2ED7004C6C29 /* PhotosCollectionViewController.swift */,
+				BAC59202228B3C2500539D57 /* PhotoCollectionViewCell.swift */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -288,11 +294,13 @@
 				EAFFB773227B68AE00FC898D /* ScheduleCoreDataProperties.swift in Sources */,
 				D36CDDCC227A53BF00445A38 /* AudioFileCoreDataProperties.swift in Sources */,
 				EA02238C2256F61C009019E7 /* ScheduleTableViewController.swift in Sources */,
+				BA12A4CA228B2ED7004C6C29 /* PhotosCollectionViewController.swift in Sources */,
 				EA4E4A84224ADE9400B33F19 /* AppDelegate.swift in Sources */,
 				EA4E4A8C224ADE9400B33F19 /* IO3.xcdatamodeld in Sources */,
 				D36CDDEC227B2A9E00445A38 /* audioRecordingTableViewController.swift in Sources */,
 				EA0F237622887D54008E8C77 /* ChosenScheduleViewController.swift in Sources */,
 				EA65A73E2252FE3000E7AC87 /* HomeTableViewCell.swift in Sources */,
+				BAC59203228B3C2500539D57 /* PhotoCollectionViewCell.swift in Sources */,
 				D358CC672273A2750016749F /* audioRecordingViewController.swift in Sources */,
 				D36CDDEE227B688B00445A38 /* ProjectsCoreDataClass.swift in Sources */,
 				EADBD909224D9C7A0087C22F /* ProjectListTableViewController.swift in Sources */,
