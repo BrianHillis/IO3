@@ -13,29 +13,37 @@ private let reuseIdentifier = "photoCell"
 
 class PhotosCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var addPhotos: UIBarButtonItem!
     @IBOutlet var myCollectionView: UICollectionView!
-    var imagesArray :[UIImage] = []
     
-//    var assetCollection: PHAssetCollection!
-//    var photosAsset: PHFetchResult<AnyObject>!
-//    var assetThumbnailSize: CGSize!
+    
+    
+    
+    
+    var imagesArray = [UIImage]()
+//    var newImage: UIImage?
+//
+//    let imageDefaults = UserDefaults.standard
+//
+//    imagesArray.insert(newImage, at: 0)
+//    imageDefaults.set(imagesArray, forKey: "imagesArray")
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        let fetchOptions = PHFetchOptions()
-//
-//        let collection:PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
-//
-//        if let first_Obj:AnyObject = collection.firstObject{
-//            //found the album
-//            self.assetCollection = first_Obj as! PHAssetCollection
-//        }
+       
+//        imagesArray = imageDefaults.array(forKey: "imagesArray") as! [UIImage]
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        getImagesAction()
+        
         // Do any additional setup after loading the view.
+    }
+    
+    
+    
+    @IBAction func addPhotosFunc(_ sender: Any) {
+        getImagesAction()
     }
     
     func getImagesAction() {
@@ -53,10 +61,16 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let pickedimage = (info[.editedImage] as? UIImage){
+        if let pickedimage = (info[.originalImage] as? UIImage){
             imagesArray = [pickedimage]
+//            newImage = pickedimage
+//
+//            imagesArray.insert(newImage!, at: 0)
+//            imageDefaults.set(imagesArray, forKey: "imagesArray")
             
         }
+//        print("DID WE ARRIVE")
+        
         myCollectionView.reloadData()
         dismiss(animated: true, completion: nil)
     }
