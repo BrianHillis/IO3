@@ -26,6 +26,14 @@ class SingleProjectTableViewController: UIViewController, AVAudioPlayerDelegate,
         super.viewDidLoad()
     }
     
+    @IBAction func viewPhotosFunc(_ sender: Any) {
+        
+    
+    }
+    
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         fetchAudioFiles()
 		fetchProjects()
@@ -67,7 +75,7 @@ class SingleProjectTableViewController: UIViewController, AVAudioPlayerDelegate,
         //            notesCount = notes.count
         //        }
         cell.detailTextLabel?.text = audioFile.link?.absoluteString
-        
+        cell.textLabel?.textColor = UIColor.green
         
         return cell
     }
