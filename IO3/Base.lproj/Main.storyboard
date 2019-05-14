@@ -470,6 +470,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="imageView" destination="ysZ-pD-fr8" id="9qT-Xw-nxH"/>
                         <outlet property="myCollectionView" destination="iVz-Ue-z9l" id="BoF-ES-mQ5"/>
                     </connections>
                 </collectionViewController>
