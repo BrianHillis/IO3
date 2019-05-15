@@ -472,7 +472,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="myCollectionView" destination="iVz-Ue-z9l" id="BoF-ES-mQ5"/>
+                        <outlet property="myCollectionView" destination="iVz-Ue-z9l" id="Z13-v0-Wt8"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsO-h3-y5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
