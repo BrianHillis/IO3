@@ -38,7 +38,7 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+//		deletePhotos()
         fetchData()
 //        imagesArray = imageDefaults.array(forKey: "imagesArray") as! [UIImage]
 		
@@ -168,26 +168,6 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
 			print("Couldn't save \(error)")
 		}
 		
-		
-		
-		
-//        appDelegate.saveContext()
-		
-		
-		
-//		imagesArray = [pickedimage]
-		
-			
-			
-			
-			
-			
-//            newImage = pickedimage
-//
-//            imagesArray.insert(newImage!, at: 0)
-//            imageDefaults.set(imagesArray, forKey: "imagesArray")
-            
-		
         print("DID WE ARRIVE")
 		myCollectionView.reloadData()
         dismiss(animated: true)
@@ -197,13 +177,12 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
 
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+		
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
 		print("photos count for sections: \(photos.count)")
         return photos.count
     }
@@ -212,20 +191,24 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
         
         let cell: PhotoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosCell", for: indexPath) as! PhotoCollectionViewCell
 			print("testststs")
-        //cell.imageView.image = UIImage(named: imagesArray[indexPath.row] )
+		
 			print(photos[indexPath.row].filePath!)
 			let filePath = photos[indexPath.row].filePath!
 		
 		
-//			if FileManager.default.fileExists(atPath: filePath) {
+			if FileManager.default.fileExists(atPath: filePath) {
 			if let contentsOfFilePath = UIImage(contentsOfFile: filePath) {
 				print("Big ole test")
 				cell.configurecell(image: contentsOfFilePath)
 			}
 			else{
 				print("Big ole error")
+				deletePhotos()
 				}
-//		}
+	}
+			else{
+				deletePhotos()
+		}
 //			cell.configurecell(image: imagesArray[indexPath.row])
 		
         return cell
@@ -272,7 +255,21 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
 		}
 		
 	}
-
+	
+	func deletePhotos(){
+		let container = appDelegate.persistentContainer
+		let context = container.viewContext
+		let fetchRequest = NSFetchRequest<Photo>(entityName: "Photo")
+		
+		let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
+		
+		do {
+		try context.execute(batchDeleteRequest)
+		}
+		catch{
+		print("error handled")
+		}
+	}
 
     // MARK: UICollectionViewDelegate
 

@@ -347,8 +347,8 @@
                                 <color key="textColor" red="0.0088609646410000003" green="0.79019273479999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Created:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hk4-fU-LUj">
-                                <rect key="frame" x="94" y="266" width="187" height="35"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hk4-fU-LUj">
+                                <rect key="frame" x="111" y="266" width="153" height="35"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <color key="textColor" red="0.0088609646410000003" green="0.79019273479999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -378,7 +378,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtk-YM-a85">
-                                <rect key="frame" x="111.5" y="378" width="152" height="44"/>
+                                <rect key="frame" x="86" y="374" width="203" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <state key="normal" title="View Photos">
                                     <color key="titleColor" red="0.0088609646410000003" green="0.79019273479999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -393,30 +393,35 @@
                             <constraint firstItem="rdP-Tz-qWL" firstAttribute="top" secondItem="u6Z-Ip-Iax" secondAttribute="top" constant="40" id="1VH-5z-qzc"/>
                             <constraint firstItem="EeK-bu-RsU" firstAttribute="trailing" secondItem="u6Z-Ip-Iax" secondAttribute="trailing" id="43f-uA-egB"/>
                             <constraint firstItem="Cck-Up-Zpv" firstAttribute="top" secondItem="NUk-K7-gns" secondAttribute="bottom" constant="8" id="4S6-qq-hfO"/>
-                            <constraint firstItem="mPV-Zy-xQt" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="7o8-Jd-zRj"/>
+                            <constraint firstItem="u6Z-Ip-Iax" firstAttribute="trailing" secondItem="gtk-YM-a85" secondAttribute="trailing" constant="86" id="4W3-Z7-DtS"/>
                             <constraint firstItem="Cck-Up-Zpv" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="8TI-Pt-LQ4"/>
                             <constraint firstItem="hBo-G1-VFr" firstAttribute="top" secondItem="Cck-Up-Zpv" secondAttribute="bottom" constant="8" id="945-xf-3cM"/>
                             <constraint firstItem="rdP-Tz-qWL" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="Adf-yg-iUa"/>
+                            <constraint firstItem="mPV-Zy-xQt" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="D1H-7e-ABP"/>
                             <constraint firstItem="NUk-K7-gns" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="DIc-6b-b4e"/>
                             <constraint firstItem="EeK-bu-RsU" firstAttribute="leading" secondItem="u6Z-Ip-Iax" secondAttribute="leading" id="Fam-jX-I0n"/>
                             <constraint firstItem="b0Y-U0-lXk" firstAttribute="top" secondItem="hk4-fU-LUj" secondAttribute="bottom" constant="8" id="Qal-1R-lEY"/>
                             <constraint firstItem="EeK-bu-RsU" firstAttribute="top" secondItem="u6Z-Ip-Iax" secondAttribute="top" constant="435" id="QlZ-Le-urP"/>
                             <constraint firstItem="EeK-bu-RsU" firstAttribute="bottom" secondItem="u6Z-Ip-Iax" secondAttribute="bottom" id="USY-Xw-0DG"/>
-                            <constraint firstItem="mPV-Zy-xQt" firstAttribute="top" secondItem="gtk-YM-a85" secondAttribute="bottom" constant="34" id="WzY-Xb-hHH"/>
                             <constraint firstItem="hk4-fU-LUj" firstAttribute="top" secondItem="hBo-G1-VFr" secondAttribute="bottom" constant="8" id="YCh-Ln-VsZ"/>
                             <constraint firstItem="b0Y-U0-lXk" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="ZCa-aE-2sQ"/>
-                            <constraint firstItem="gtk-YM-a85" firstAttribute="top" secondItem="b0Y-U0-lXk" secondAttribute="bottom" constant="39" id="aQa-XR-Ncb"/>
+                            <constraint firstItem="gtk-YM-a85" firstAttribute="top" secondItem="u6Z-Ip-Iax" secondAttribute="top" constant="310" id="ZQV-wP-CHu"/>
                             <constraint firstItem="hk4-fU-LUj" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="kNp-rq-GZ9"/>
                             <constraint firstItem="NUk-K7-gns" firstAttribute="top" secondItem="rdP-Tz-qWL" secondAttribute="bottom" constant="8" id="l0j-Zl-Skd"/>
                             <constraint firstItem="hBo-G1-VFr" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="nD8-Ea-xMt"/>
-                            <constraint firstItem="gtk-YM-a85" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="ot0-bq-k7X"/>
+                            <constraint firstItem="gtk-YM-a85" firstAttribute="leading" relation="lessThanOrEqual" secondItem="u6Z-Ip-Iax" secondAttribute="leading" constant="86" id="vq0-kn-j9Q"/>
+                            <constraint firstItem="mPV-Zy-xQt" firstAttribute="top" secondItem="gtk-YM-a85" secondAttribute="bottom" constant="38" id="zsI-C3-Y5j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="u6Z-Ip-Iax"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="audioButton" destination="gtk-YM-a85" id="yuI-ez-2Au"/>
                         <outlet property="audioRecordingTableView" destination="EeK-bu-RsU" id="DBw-xv-HIz"/>
+                        <outlet property="dateCreatedOutlet" destination="hBo-G1-VFr" id="5uY-0G-2qQ"/>
+                        <outlet property="descriptionOutlet" destination="b0Y-U0-lXk" id="No8-Dr-5Yd"/>
+                        <outlet property="projectTitleOutlet" destination="NUk-K7-gns" id="53n-y4-QHi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdO-O8-x3j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -430,7 +435,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="iVz-Ue-z9l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Ui-yY-ql9">
                             <size key="itemSize" width="347" height="351"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -464,7 +469,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Photos" id="ygV-UV-hc0">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VNq-vE-7iD">
-                            <color key="tintColor" red="0.0071303710230000003" green="0.5" blue="0.0038595714160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.13220167399999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="addPhotosFunc:" destination="feK-y5-i1F" id="CDe-2F-BYT"/>
                             </connections>
