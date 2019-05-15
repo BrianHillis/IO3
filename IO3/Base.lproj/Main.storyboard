@@ -317,7 +317,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EeK-bu-RsU">
-                                <rect key="frame" x="0.0" y="499" width="375" height="119"/>
+                                <rect key="frame" x="0.0" y="499" width="375" height="75"/>
                                 <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="audioRecordingCell" id="Ffg-9h-mcg">
@@ -371,19 +371,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coN-X2-shP">
-                                <rect key="frame" x="111.5" y="379" width="152" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
-                                <state key="normal" title="View Photos">
-                                    <color key="titleColor" red="0.0088609646410000003" green="0.79019273479999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPV-Zy-xQt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Audio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPV-Zy-xQt">
                                 <rect key="frame" x="144" y="456" width="87" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                 <color key="textColor" red="0.0088609646410000003" green="0.79019273479999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gtk-YM-a85">
+                                <rect key="frame" x="111" y="378" width="152" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <state key="normal" title="View Photos">
+                                    <color key="titleColor" red="0.0088609646410000003" green="0.79019273479999996" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="feK-y5-i1F" kind="show" id="32e-BK-rvB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -395,21 +400,19 @@
                             <constraint firstItem="rdP-Tz-qWL" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="Adf-yg-iUa"/>
                             <constraint firstItem="NUk-K7-gns" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="DIc-6b-b4e"/>
                             <constraint firstItem="EeK-bu-RsU" firstAttribute="leading" secondItem="u6Z-Ip-Iax" secondAttribute="leading" id="Fam-jX-I0n"/>
-                            <constraint firstItem="coN-X2-shP" firstAttribute="top" secondItem="b0Y-U0-lXk" secondAttribute="bottom" constant="40" id="Q06-YJ-fgx"/>
                             <constraint firstItem="b0Y-U0-lXk" firstAttribute="top" secondItem="hk4-fU-LUj" secondAttribute="bottom" constant="8" id="Qal-1R-lEY"/>
                             <constraint firstItem="EeK-bu-RsU" firstAttribute="top" secondItem="u6Z-Ip-Iax" secondAttribute="top" constant="435" id="QlZ-Le-urP"/>
                             <constraint firstItem="EeK-bu-RsU" firstAttribute="bottom" secondItem="u6Z-Ip-Iax" secondAttribute="bottom" id="USY-Xw-0DG"/>
                             <constraint firstItem="hk4-fU-LUj" firstAttribute="top" secondItem="hBo-G1-VFr" secondAttribute="bottom" constant="8" id="YCh-Ln-VsZ"/>
                             <constraint firstItem="b0Y-U0-lXk" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="ZCa-aE-2sQ"/>
-                            <constraint firstItem="mPV-Zy-xQt" firstAttribute="top" secondItem="u6Z-Ip-Iax" secondAttribute="top" constant="392" id="c60-CC-PHH"/>
-                            <constraint firstItem="mPV-Zy-xQt" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="gUu-3X-N9c"/>
                             <constraint firstItem="hk4-fU-LUj" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="kNp-rq-GZ9"/>
                             <constraint firstItem="NUk-K7-gns" firstAttribute="top" secondItem="rdP-Tz-qWL" secondAttribute="bottom" constant="8" id="l0j-Zl-Skd"/>
-                            <constraint firstItem="coN-X2-shP" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="m8V-vK-25C"/>
                             <constraint firstItem="hBo-G1-VFr" firstAttribute="centerX" secondItem="u6Z-Ip-Iax" secondAttribute="centerX" id="nD8-Ea-xMt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="u6Z-Ip-Iax"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="audioRecordingTableView" destination="EeK-bu-RsU" id="DBw-xv-HIz"/>
                     </connections>
@@ -417,6 +420,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdO-O8-x3j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-223.19999999999999" y="1323.6881559220392"/>
+        </scene>
+        <!--Photos-->
+        <scene sceneID="J3t-fN-pdv">
+            <objects>
+                <collectionViewController id="feK-y5-i1F" customClass="PhotosCollectionViewController" customModule="IO3" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="iVz-Ue-z9l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Ui-yY-ql9">
+                            <size key="itemSize" width="347" height="351"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photosCell" id="q2D-O0-YS8" customClass="PhotoCollectionViewCell" customModule="IO3" customModuleProvider="target">
+                                <rect key="frame" x="14" y="0.0" width="347" height="351"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="347" height="351"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ysZ-pD-fr8">
+                                            <rect key="frame" x="0.0" y="0.0" width="347" height="351"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <connections>
+                                    <outlet property="imageView" destination="ysZ-pD-fr8" id="ctg-ok-j3D"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="feK-y5-i1F" id="3EQ-Ym-LV2"/>
+                            <outlet property="delegate" destination="feK-y5-i1F" id="a57-Gn-dr8"/>
+                        </connections>
+                    </collectionView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Photos" id="ygV-UV-hc0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VNq-vE-7iD">
+                            <color key="tintColor" red="0.13220167399999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="addPhotosFunc:" destination="feK-y5-i1F" id="CDe-2F-BYT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="myCollectionView" destination="iVz-Ue-z9l" id="BoF-ES-mQ5"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TsO-h3-y5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="524" y="1323.6881559220392"/>
         </scene>
         <!--Audio Recording Table View Controller-->
         <scene sceneID="CFf-bk-d4b">
