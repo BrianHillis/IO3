@@ -207,6 +207,7 @@ class SingleProjectTableViewController: UIViewController, AVAudioPlayerDelegate,
 		dateCreatedOutlet.text = ProjectListTableViewController.globalVariable.nextDate
 //		timeLabel.text = dateString
 		descriptionOutlet.text = ProjectListTableViewController.globalVariable.nextDescription
+		
 	}
 }
 
