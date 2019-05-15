@@ -8,21 +8,27 @@
 
 import UIKit
 import Photos
+import CoreData
 
-private let reuseIdentifier = "photoCell"
+
 
 class PhotosCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     
-    @IBOutlet var myCollectionView: UICollectionView!
-    
-    @IBOutlet weak var imageView: UIImageView!
-    
-    
-    
+   @IBOutlet weak var myCollectionView: UICollectionView!
+	
+//   @IBOutlet weak var imageView: UIImageView!
+	
+    private let reuseIdentifier = "photoCell"
+
     var selectedImageTag = 0
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var imagesArray = [UIImage]()
+//
+	var photos = [Photo]()
+	var holder: String?
+//	var photo: Photo
+
 //    var newImage: UIImage?
 //
 //    let imageDefaults = UserDefaults.standard
@@ -32,25 +38,29 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       fetchData()
+		
+        fetchData()
 //        imagesArray = imageDefaults.array(forKey: "imagesArray") as! [UIImage]
-
+		
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
+		
         // Do any additional setup after loading the view.
     }
     
-    
-    
+//	override func viewWillAppear(_ animated: Bool) {
+//		fetchData()
+//	}
+	
     @IBAction func addPhotosFunc(_ sender: Any) {
-        getImagesAction()
+		checkPermission {
+			self.getImagesAction()
+		}
     }
     
     func getImagesAction() {
         
-        let picker:UIImagePickerController = UIImagePickerController()
+        let picker : UIImagePickerController = UIImagePickerController()
         picker.sourceType = .photoLibrary
         picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
         
@@ -62,19 +72,28 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
     func fetchData() {
         let container = appDelegate.persistentContainer
         let context = container.viewContext
-        let fetchRequest = NSFetchRequest<Image>(entityName: "Image")
-        
+        let fetchRequest = NSFetchRequest<Photo>(entityName: "Photo")
+		
+//		let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
+//
+//		do {
+//			try context.execute(batchDeleteRequest)
+//		}
+//		catch{
+//			print("error handled")
+//		}
+
         do{
-            let images = try context.fetch(fetchRequest)
-            
-            for image in images {
+            photos = try context.fetch(fetchRequest)
+			
+            for image in photos {
                 if let placement = image.placement,
                     let filePath = image.filePath {
                     
                     if FileManager.default.fileExists(atPath: filePath) {
                         if let contentsOfFilePath = UIImage(contentsOfFile: filePath) {
                             switch placement {
-                            case "top": imageView.image = contentsOfFilePath
+//							case "top": UIImageView. = contentsOfFilePath
                             default: break
                             }
                         }
@@ -105,7 +124,7 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
         
         do{
             let files = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
-            
+			
             for file in files {
                 if "\(documentPath)/\(file)" == filePath.path {
                     try fileManager.removeItem(atPath: filePath.path)
@@ -114,42 +133,65 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
         } catch {
             print("Couldnt add image from doc directory: \(error)")
         }
-        
-        do {
-            if let pngImageData = UIImagePNGRepresentation(image) {
-                try pngImageData.write(to: filePath, options: .atomic)
-            }
-        } catch {
-            print("couldnt write image")
-        }
-        
-        let container  = appDelegate.persistentContainer
-        let context = container.viewContext
-        let entity = Image(context: context)
-        entity.filePath = filePath.path
-        
-        switch selectedImageTag {
-        case 1: entity.placement = "top"
-        case 2: entity.placement = "middle"
-        case 3: entity.placement = "bottom"
-        default:
-            break
-        }
-        appDelegate.saveContext()
-        
-        
-        if let pickedimage = (info[.originalImage] as? UIImage){
-            imagesArray = [pickedimage]
+		
+
+
+
+		
+		guard let pickedimage = (info[.originalImage] as? UIImage) else { return }
+		
+		let imageName = UUID().uuidString
+		let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
+		
+		if let jpegData = pickedimage.jpegData(compressionQuality: 0.8){
+			try? jpegData.write(to: imagePath)
+		}
+		print("the t4st of all teast")
+		print(imagePath)
+		
+		
+		
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		let managedContext = appDelegate.persistentContainer.viewContext
+		let fileEntity = NSEntityDescription.entity(forEntityName: "Photo", in: managedContext)!
+		let file = NSManagedObject(entity: fileEntity, insertInto: managedContext)
+		file.setValue(imagePath.path , forKey: "filePath")
+		file.setValue(holder, forKey: "placement")
+		photos.append(file as! Photo)
+		print(photos.count)
+		do{
+			try managedContext.save()
+		}
+		catch let error as NSError{
+			print("Couldn't save \(error)")
+		}
+		
+		
+		
+		
+//        appDelegate.saveContext()
+		
+		
+		
+//		imagesArray = [pickedimage]
+		
+			
+			
+			
+			
+			
 //            newImage = pickedimage
 //
 //            imagesArray.insert(newImage!, at: 0)
 //            imageDefaults.set(imagesArray, forKey: "imagesArray")
             
-        }
-//        print("DID WE ARRIVE")
-        
-        myCollectionView.reloadData()
-        dismiss(animated: true, completion: nil)
+		
+        print("DID WE ARRIVE")
+		myCollectionView.reloadData()
+        dismiss(animated: true)
+		print("how about here")
     }
 
 
@@ -162,18 +204,75 @@ class PhotosCollectionViewController: UICollectionViewController, UIImagePickerC
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-
-        return imagesArray.count
+		print("photos count for sections: \(photos.count)")
+        return photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: PhotoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosCell", for: indexPath) as! PhotoCollectionViewCell
+			print("testststs")
         //cell.imageView.image = UIImage(named: imagesArray[indexPath.row] )
-        cell.configurecell(image: imagesArray[indexPath.row])
-        
+			print(photos[indexPath.row].filePath!)
+			let filePath = photos[indexPath.row].filePath!
+		
+		
+//			if FileManager.default.fileExists(atPath: filePath) {
+			if let contentsOfFilePath = UIImage(contentsOfFile: filePath) {
+				print("Big ole test")
+				cell.configurecell(image: contentsOfFilePath)
+			}
+			else{
+				print("Big ole error")
+				}
+//		}
+//			cell.configurecell(image: imagesArray[indexPath.row])
+		
         return cell
     }
+	
+	func checkPermission(hanler: @escaping () -> Void) {
+		let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+		switch photoAuthorizationStatus {
+		case .authorized:
+			// Access is already granted by user
+			hanler()
+		case .notDetermined:
+			PHPhotoLibrary.requestAuthorization { (newStatus) in
+				if newStatus == PHAuthorizationStatus.authorized {
+					// Access is granted by user
+					hanler()
+				}
+			}
+		default:
+			print("Error: no access to photo album.")
+		}
+	}
+
+	func getDocumentsDirectory() -> URL
+	{
+		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+		let documentsDirectory = paths[0]
+		return documentsDirectory
+	}
+	
+	
+	 func clearImagesCache() {
+		let fileManager = FileManager.default
+		let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+		let documentPath = documentsURL.path
+		
+		do {
+			let files = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
+			for file in files {
+				try fileManager.removeItem(atPath: "\(documentPath)/\(file)")
+			}
+		} catch {
+			print("could not clear cache")
+		}
+		
+	}
+
 
     // MARK: UICollectionViewDelegate
 

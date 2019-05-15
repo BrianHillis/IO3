@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18D42" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AudioFile" representedClassName="AudioFile" syncable="YES">
         <attribute name="link" optional="YES" attributeType="URI" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="audioFiles" inverseEntity="Project" syncable="YES"/>
     </entity>
-    <entity name="Image" representedClassName="Image" syncable="YES" codeGenerationType="class">
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="placement" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -24,8 +24,8 @@
     </entity>
     <elements>
         <element name="AudioFile" positionX="-36" positionY="36" width="128" height="90"/>
+        <element name="Photo" positionX="54" positionY="135" width="128" height="75"/>
         <element name="Project" positionX="-54" positionY="18" width="128" height="120"/>
         <element name="Schedule" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Image" positionX="54" positionY="135" width="128" height="75"/>
     </elements>
 </model>
