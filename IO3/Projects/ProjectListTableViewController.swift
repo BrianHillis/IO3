@@ -25,6 +25,14 @@ class ProjectListTableViewController: UITableViewController {
     //day array
     var dayStart = [String]()
     var newDay: String = ""
+	
+	struct globalVariable{
+		static var nextTitle = String()
+		static var nextDate = String()
+		static var nextDay = String()
+		static var nextDescription = String()
+	}
+	
     
     //initialize local storage data sets
     let projectDefaults = UserDefaults.standard
@@ -61,6 +69,8 @@ class ProjectListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		
 		
 		fetchProjects()
         
@@ -192,7 +202,15 @@ class ProjectListTableViewController: UITableViewController {
 		}
 		
 	}
-
+	
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let project = projects[indexPath.row]
+		globalVariable.nextTitle = project.title!
+		globalVariable.nextDate = "\(project.date!), \(project.day!)"
+		globalVariable.nextDay = project.day!
+		globalVariable.nextDescription = project.info!
+		tableView.deselectRow(at: indexPath, animated: true)
+	}
     /*
      Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

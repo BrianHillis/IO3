@@ -15,8 +15,16 @@ class SingleProjectTableViewController: UIViewController, AVAudioPlayerDelegate,
 
     
     @IBOutlet var audioRecordingTableView: UITableView!
-    
-    var audioFiles = [AudioFile]()
+	
+	@IBOutlet weak var projectTitleOutlet: UILabel!
+	
+	@IBOutlet weak var dateCreatedOutlet: UILabel!
+	
+	@IBOutlet weak var descriptionOutlet: UILabel!
+	
+	@IBOutlet weak var audioButton: UIButton!
+	
+	var audioFiles = [AudioFile]()
 	var projects = [Project]()
     
     var audioPlayer : AVAudioPlayer!
@@ -24,6 +32,11 @@ class SingleProjectTableViewController: UIViewController, AVAudioPlayerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		audioButton.layer.cornerRadius = 5
+		audioButton.layer.borderWidth = 1
+		audioButton.layer.borderColor = UIColor.green.cgColor
+		
     }
     
     @IBAction func viewPhotosFunc(_ sender: Any) {
@@ -38,6 +51,7 @@ class SingleProjectTableViewController: UIViewController, AVAudioPlayerDelegate,
         fetchAudioFiles()
 		fetchProjects()
         audioRecordingTableView.reloadData()
+		loadData()
     }
     
     func fetchAudioFiles() {
@@ -182,10 +196,17 @@ class SingleProjectTableViewController: UIViewController, AVAudioPlayerDelegate,
 		do {
 			projects = try managedContext.fetch(fetchRequest)
 		} catch {
-			//alertNotifyUser(message: "Fetch for audio files could not be performed.")
+			//alertNotifyUser(message: "Fetch for audio files could not be performed.") 
 			return
 		}
 		print(projects.count)
+	}
+	
+	func loadData(){
+		projectTitleOutlet.text = ProjectListTableViewController.globalVariable.nextTitle
+		dateCreatedOutlet.text = ProjectListTableViewController.globalVariable.nextDate
+//		timeLabel.text = dateString
+		descriptionOutlet.text = ProjectListTableViewController.globalVariable.nextDescription
 	}
 }
 
