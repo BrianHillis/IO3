@@ -196,7 +196,7 @@ class SingleProjectTableViewController: UIViewController, AVAudioPlayerDelegate,
 		do {
 			projects = try managedContext.fetch(fetchRequest)
 		} catch {
-			//alertNotifyUser(message: "Fetch for audio files could not be performed.")
+			//alertNotifyUser(message: "Fetch for audio files could not be performed.") 
 			return
 		}
 		print(projects.count)
@@ -207,7 +207,6 @@ class SingleProjectTableViewController: UIViewController, AVAudioPlayerDelegate,
 		dateCreatedOutlet.text = ProjectListTableViewController.globalVariable.nextDate
 //		timeLabel.text = dateString
 		descriptionOutlet.text = ProjectListTableViewController.globalVariable.nextDescription
-		
 	}
 }
 
