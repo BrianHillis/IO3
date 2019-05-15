@@ -8,12 +8,16 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
-class audioRecordingTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class audioRecordingTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate, AVAudioRecorderDelegate{
 
 	@IBOutlet var audioRecordingTableView: UITableView!
 	
 	var audioFiles = [AudioFile]()
+	
+	var audioPlayer : AVAudioPlayer!
+	var isPlaying = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,7 +34,6 @@ class audioRecordingTableViewController: UIViewController, UITableViewDataSource
 		}
 		let managedContext = appDelegate.persistentContainer.viewContext
 		let fetchRequest: NSFetchRequest<AudioFile> = AudioFile.fetchRequest()
-//		let fetchRequestTest = NSFetchRequest<NSFetchRequestResult>(entityName: "AudioFile")
 //		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)] // order results by category title ascending
 		
 		do {
@@ -39,7 +42,6 @@ class audioRecordingTableViewController: UIViewController, UITableViewDataSource
 			alertNotifyUser(message: "Fetch for audio files could not be performed.")
 			return
 		}
-		print(audioFiles.count)
 	}
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,9 +57,6 @@ class audioRecordingTableViewController: UIViewController, UITableViewDataSource
 		
 		let audioFile = audioFiles[indexPath.row]
 		cell.textLabel?.text = audioFile.title
-//		if let notes = category.notes {
-//			notesCount = notes.count
-//		}
 		cell.detailTextLabel?.text = audioFile.link?.absoluteString
 		
 		
@@ -69,13 +68,6 @@ class audioRecordingTableViewController: UIViewController, UITableViewDataSource
 			deleteCategory(at: indexPath)
 		}
 	}
-	
-//	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//		if let destination = segue.destination as? NotesViewController,
-//			let row = categoriesTableView.indexPathForSelectedRow?.row{
-//			destination.category = categories[row]
-//		}
-//	}
 	
 	func alertNotifyUser(message: String) {
 		let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
@@ -105,9 +97,41 @@ class audioRecordingTableViewController: UIViewController, UITableViewDataSource
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		//print("section: \(indexPath.section)")
-		
-		print("row: \(indexPath.row)")
+		playRecording(ind: indexPath.row)
 	}
 	
+	func prepare_play(i: Int)
+	{
+		do
+		{
+			audioPlayer = try AVAudioPlayer(contentsOf: audioFiles[i].link!)
+			audioPlayer.delegate = self as AVAudioPlayerDelegate
+			audioPlayer.prepareToPlay()
+		}
+		catch{
+			print("Error4")
+		}
+	}
+	
+	func playRecording(ind: Int) {
+		if(isPlaying)
+		{
+			audioPlayer.stop()
+			isPlaying = false
+		}
+		else
+		{
+			if FileManager.default.fileExists(atPath: audioFiles[ind].link!.path)
+			{
+				prepare_play(i: ind)
+				audioPlayer.play()
+				isPlaying = true
+			}
+			else
+			{
+				print(audioFiles[ind].link?.path)
+				print("Big error")
+			}
+		}
+	}
 }

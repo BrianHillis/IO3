@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,23 +15,35 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 	@IBOutlet weak var audioButton: UIButton!
 	
     //projects array
-    var projects = [String]()
+    var projects = [Project]()
     //description array
     var descriptions = [String]()
     //date array
     var dateStart = [String]()
     //day array
     var dayStart = [String]()
+	
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //load array data from ProjectListTableViewController into this view
-        loadArray()
+//        loadArray()
+        audioButton.layer.cornerRadius = 5
+        audioButton.layer.borderWidth = 1
+        audioButton.layer.borderColor = UIColor.green.cgColor
+        
+		fetchProjects()
+		tableView.reloadData()
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		fetchProjects()
+		tableView.reloadData()
+	}
     
     func loadArray() {
         let viewControllerData = ProjectListTableViewController()
-        projects = viewControllerData.projectDefaults.stringArray(forKey: "projectArray") ?? [String]()
+//        projects = viewControllerData.projectDefaults.stringArray(forKey: "projectArray") ?? [String]()
         descriptions = viewControllerData.descriptionDefaults.stringArray(forKey: "descriptionArray") ?? [String]()
         dateStart = viewControllerData.dateDefaults.stringArray(forKey: "dateArray") ?? [String]()
         dayStart = viewControllerData.dateDefaults.stringArray(forKey: "dayArray") ?? [String]()
@@ -41,9 +54,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(projects.count >= 2){
-            return 2
-        }
         return 1
     }
     
@@ -62,10 +72,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if(projects.count >= 1){
             if let cell = cell as? HomeTableViewCell{
-                cell.projectLabel.text = projects[indexPath.row]
-                cell.descriptionLabel.text = descriptions[indexPath.row]
-                cell.dateLabel.text = dateStart[indexPath.row]
-                cell.dayLabel.text = dayStart[indexPath.row]
+                cell.projectLabel.text = projects[indexPath.row].title
+                cell.descriptionLabel.text = projects[indexPath.row].info
+                cell.dateLabel.text = projects[indexPath.row].date
+                cell.dayLabel.text = projects[indexPath.row].day
             }
             return cell
         }
@@ -74,7 +84,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
-    
+	func fetchProjects() {
+		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		let managedContext = appDelegate.persistentContainer.viewContext
+		let fetchRequest: NSFetchRequest<Project> = Project.fetchRequest()
+		//		let fetchRequestTest = NSFetchRequest<NSFetchRequestResult>(entityName: "AudioFile")
+		//		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)] // order results by category title ascending
+		
+		do {
+			projects = try managedContext.fetch(fetchRequest)
+		} catch {
+			//alertNotifyUser(message: "Fetch for audio files could not be performed.")
+			return
+		}
+		print(projects.count)
+	}
 
     /*
     // MARK: - Navigation

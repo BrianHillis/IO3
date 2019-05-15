@@ -10,44 +10,38 @@ import UIKit
 
 class AddScheduleViewController: UIViewController {
 
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var notesTextField: UITextField!
+    @IBOutlet weak var whenDatePicker: UIDatePicker!
+    
+    var scheduleTitle: String = ""
+    var scheduleLocation: String = ""
+    var scheduleNotes: String = ""
+    var scheduleTime: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        datePicker.setValue(UIColor.white, forKeyPath: "textColor")
-        // Do any additional setup after loading the view.
+        whenDatePicker.setValue(UIColor.green, forKeyPath: "textColor")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "doneSegue2" {
-//            projectTitle = titleTextField.text!
-//            descriptionInput = descriptionTextField.text!
-//            
-//            let now = Date()
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "LLLL"
-//            let nameOfMonth = dateFormatter.string(from: now)
-//            dateString = nameOfMonth
-//            dateFormatter.dateFormat = "dd"
-//            let dayOfMonth = dateFormatter.string(from: now)
-//            dayString = dayOfMonth
-            
+        if segue.identifier == "doneWithSchedule" {
+            scheduleTitle = titleTextField.text!
+            scheduleLocation = locationTextField.text!
+            scheduleNotes = notesTextField.text!
+            scheduleTime = getScheduleTime()
         }
         if segue.identifier == "cancelSchedule"{
             return
         }
     }
-
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func getScheduleTime() -> Date{
+        let thisTime = whenDatePicker.date
+        return thisTime
     }
-    */
+    
 
 }

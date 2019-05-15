@@ -11,17 +11,16 @@ import UIKit
 import AVFoundation
 import CoreData
 
-class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate { //make sure to add these 2 things
+class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 	
-	@IBOutlet weak var recordingTimeLabel: UILabel! //link the label and both buttons with outlets
+	@IBOutlet weak var recordingTimeLabel: UILabel!
 	@IBOutlet weak var recordButton: UIButton!
 	@IBOutlet weak var playButton: UIButton!
-//	@IBOutlet weak var playbackSlider: UISlider!
 	@IBOutlet weak var textOutlet: UITextField!
 	
 	@IBOutlet weak var saveButton: UIButton!
 	
-	var audioRecorder: AVAudioRecorder! //declare some variables to be used later on
+	var audioRecorder: AVAudioRecorder!
 	var audioPlayer : AVAudioPlayer!
 	var meterTimer:Timer!
 	var isAudioRecordingGranted: Bool!
@@ -38,20 +37,16 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 	
 	var files = [AudioFile]()
 	
-	
-	
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		checkPermissions();
 		fetchAudioFiles()
 		count = files.count
-		print(count)
 	}
 	
 	func checkPermissions(){
-		switch AVAudioSession.sharedInstance().recordPermission { //made a correction here to make xcode happy
-		case AVAudioSessionRecordPermission.granted: //this code came from the stack overflow
+		switch AVAudioSession.sharedInstance().recordPermission {
+		case AVAudioSessionRecordPermission.granted:
 			isAudioRecordingGranted = true
 			break
 		case AVAudioSessionRecordPermission.denied:
@@ -70,10 +65,8 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 			break
 		}
 	}
-	
-	
-	
-	func getDocumentsDirectory() -> URL //these 2 functions get the path for saving the audio recording
+
+	func getDocumentsDirectory() -> URL
 	{
 		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 		let documentsDirectory = paths[0]
@@ -82,21 +75,14 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 	
 	func getFileUrl() -> URL
 	{
-//		let filename = project.name //change this to change the name of the saved file
-//		project.filePath = getDocumentsDirectory().appendingPathComponent(filename)
-//		print(project.filePath)
-//		return project.filePath
 		count = files.count
 		let filename = "myRecording\(count).m4a"
 		let filePath = getDocumentsDirectory().appendingPathComponent(filename)
 		return filePath
 	}
 	
-	
-	
-	func setup_recorder() //set up the recorder, code is from stack overflow
+	func setup_recorder()
 	{
-		print("test")
 		if isAudioRecordingGranted
 		{
 			let session = AVAudioSession.sharedInstance()
@@ -126,7 +112,8 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 			
 		}
 	}
-	@IBAction func startRecording(_ sender: UIButton) { //IBaction from the right button to start recording
+	
+	@IBAction func startRecording(_ sender: UIButton) {
 	
 		if(isRecording)
 		{
@@ -138,7 +125,6 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 		else
 		{
 			setup_recorder()
-			
 			audioRecorder.record()
 			meterTimer = Timer.scheduledTimer(timeInterval: 0.1, target:self, selector:#selector(self.updateAudioMeter(timer:)), userInfo:nil, repeats:true)
 			recordButton.setTitle("Stop", for: .normal)
@@ -160,8 +146,6 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 		}
 	}
 	
-	
-	
 	func finishAudioRecording(success: Bool)
 	{
 		if success
@@ -169,22 +153,14 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 			audioRecorder.stop()
 			audioRecorder = nil
 			meterTimer.invalidate()
-			print("recorded successfully.")
-			//saveFile((Any).self)
 			let alert = UIAlertController(title: "Would you like to save this audio clip?", message: "", preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {  action in
 				self.audioFiles.append(self.getFileUrl())
-//				for URL in self.audioFiles{
-////					print(URL)
-//				}
-
 				if let name = alert.textFields?.first?.text {
-				print("Your audio clip name: \(name)") //need to get this value out of here to set into the title, not sure how
+				print("Your audio clip name: \(name)")
 					self.autoSave(name: name)
 				}
 				self.count+=1
-				
-
 			}))
 			alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
 			alert.addTextField(configurationHandler: {textField in
@@ -205,7 +181,7 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 	{
 		do
 		{
-			audioPlayer = try AVAudioPlayer(contentsOf: getFileUrl())
+			audioPlayer = try AVAudioPlayer(contentsOf: files[files.count-1].link!)
 			audioPlayer.delegate = self
 			audioPlayer.prepareToPlay()
 		}
@@ -224,7 +200,7 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 		}
 		else
 		{
-			if FileManager.default.fileExists(atPath: getFileUrl().path)
+			if FileManager.default.fileExists(atPath: files[files.count-1].link!.path)
 			{
 				recordButton.isEnabled = false
 				playButton.setTitle("pause", for: .normal)
@@ -253,7 +229,7 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 	{
 		recordButton.isEnabled = true
 		isPlaying=false
-		playButton.setTitle("Play", for: .normal) //added to test switching buttons
+		playButton.setTitle("Play", for: .normal)
 	}
 	
 	func display_alert(msg_title : String , msg_desc : String ,action_title : String)
@@ -279,25 +255,12 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 		file.setValue(fileTitle, forKey: "title")
 		file.setValue(getFileUrl(), forKey: "link")
 		files.append(file as! AudioFile)
-//		print(files[0].title!)
-//		print(files[0].link!)
-		
-		for AudioFile in files{
-			print(AudioFile.title!)
-			print(AudioFile.link!)
-		}
 		
 		do{
 			try managedContext.save()
 		}
 		catch let error as NSError{
 			print("Couldn't save \(error)")
-		}
-		if(files.isEmpty){
-			print("loser")
-		}
-		else{
-			print("winner")
 		}
 	}
 	
@@ -313,14 +276,6 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 		file.setValue(fileTitle, forKey: "title")
 		file.setValue(getFileUrl(), forKey: "link")
 		files.append(file as! AudioFile)
-		//		print(files[0].title!)
-		//		print(files[0].link!)
-		
-		for AudioFile in files{
-			print(AudioFile.title!)
-			print(AudioFile.link!)
-		}
-		
 		do{
 			try managedContext.save()
 		}
@@ -335,17 +290,12 @@ class audioRecordingViewController: UIViewController, AVAudioPlayerDelegate, AVA
 		}
 		let managedContext = appDelegate.persistentContainer.viewContext
 		let fetchRequest: NSFetchRequest<AudioFile> = AudioFile.fetchRequest()
-		//		let fetchRequestTest = NSFetchRequest<NSFetchRequestResult>(entityName: "AudioFile")
-		//		fetchRequest.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)] // order results by category title ascending
 		
 		do {
-			files = try managedContext.fetch(fetchRequest) as! [AudioFile]
+			files = try managedContext.fetch(fetchRequest)
 		} catch {
-			//alertNotifyUser(message: "Fetch for audio files could not be performed.")
 			return
 		}
-		print(audioFiles.count)
 	}
-	
 }
 
